@@ -1,112 +1,149 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-function App() {
-  const [selectedBrand, setSelectedBrand] = useState("");
-  const [selectedModel, setSelectedModel] = useState("");
-  const [selectedYear, setSelectedYear] = useState("");
-  const [brandsData, setBrandsData] = useState([
+interface brandData {
+  name: string;
+  types: [
     {
-      name: "Crescent",
-      src: "/json/crescent.json",
-    },
-  ]);
-  const [modelsData, setModelsData] = useState([]);
-  const [modelData, setModelData] = useState([]);
-  const [bikeData, setBikeData] = useState(null);
+      name: string;
+      models: [
+        {
+          name: string;
+          years: [
+            {
+              name: string;
+              src: string;
+            }
+          ];
+        }
+      ];
+    }
+  ];
+}
+
+interface bikeData {
+  brand: string;
+  type: string;
+  name: string;
+  year: string;
+  description: string;
+  images: [
+    {
+      src: string;
+    }
+  ];
+}
+
+function App() {
+  const [selectedBike, setSelectedBike] = useState({
+    brand: "",
+    type: "",
+    model: "",
+    year: "",
+  });
+  const [brandData, setBrandData] = useState<brandData>(null);
+  const [bikeData, setBikeData] = useState<bikeData>(null);
 
   useEffect(() => {
     if (window.location.pathname) {
       const paths = decodeURIComponent(
         window.location.pathname.substring(1)
-      ).split("/", 3);
+      ).split("/", 4);
 
-      paths[0] && setSelectedBrand(paths[0]);
-      paths[1] && setSelectedModel(paths[1]);
-      paths[2] && setSelectedYear(paths[2]);
+      paths.length === 4 &&
+        setSelectedBike({
+          brand: paths[0],
+          type: paths[1],
+          model: paths[2],
+          year: paths[3],
+        });
     }
   }, []);
 
+  // On selected brand
   useEffect(() => {
-    if (selectedBrand && brandsData.length) {
-      fetch(brandsData.find((brand) => brand.name === selectedBrand).src)
+    if (selectedBike?.brand && brandData?.name !== selectedBike.brand) {
+      fetch("/json/" + selectedBike?.brand + ".json")
         .then((response) => response.json())
-        .then((data) => setModelsData(data.models));
+        .then((data) => {
+          setBrandData(data);
+        });
     }
-  }, [selectedBrand, brandsData]);
+  }, [selectedBike, brandData]);
 
+  // On selected year
   useEffect(() => {
-    if (selectedModel && modelsData.length) {
-      const src = modelsData.find((model) => model.name === selectedModel).src;
-
-      fetch(src)
-        .then((response) => response.json())
-        .then((data) => setModelData(data));
-    }
-  }, [selectedModel, modelsData]);
-
-  useEffect(() => {
-    if (selectedYear && modelData.length) {
+    if (
+      selectedBike?.type &&
+      selectedBike.model &&
+      selectedBike.year &&
+      brandData
+    ) {
       window.history.pushState(
         {},
-        selectedBrand + " " + selectedModel + " " + selectedYear,
-        "/" + selectedBrand + "/" + selectedModel + "/" + selectedYear
+        selectedBike.brand + " " + selectedBike.model + " " + selectedBike.year,
+        "/" +
+          selectedBike.brand +
+          "/" +
+          selectedBike.type +
+          "/" +
+          selectedBike.model +
+          "/" +
+          selectedBike.year +
+          "/"
       );
 
-      setSelectedYear(selectedYear);
+      const url = brandData.types
+        .find((type) => type.name === selectedBike.type)
+        .models.find((model) => model.name === selectedBike.model)
+        .years.find((year) => year.name === selectedBike.year).src;
 
-      setBikeData(modelData.find((model) => model.year === selectedYear));
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          setBikeData(data);
+        });
     }
-  }, [selectedBrand, selectedModel, selectedYear, modelsData, modelData]);
-
-  const Header = styled.header`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #fff;
-    height: 3rem;
-    border-bottom: 1px solid #eee;
-  `;
-
-  const Main = styled.main`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  `;
-
-  const Heading = styled.h1`
-    font-size: 1rem;
-  `;
-
-  const Image = styled.img`
-    max-width: 90vw;
-    margin-bottom: 3rem;
-  `;
+  }, [selectedBike, brandData]);
 
   return (
     <>
       <Header>
         <label>Märke</label>
         <select
-          value={selectedBrand}
-          onChange={(event) => setSelectedBrand(event.target.value)}
+          value={selectedBike.brand}
+          onChange={(event) => {
+            setSelectedBike({
+              brand: event.target.value,
+              type: "",
+              model: "",
+              year: "",
+            });
+            setBikeData(null);
+          }}
         >
           <option disabled></option>
-          {brandsData.map((brand) => (
-            <option key={brand.name}>{brand.name}</option>
-          ))}
+          <option>Crescent</option>
         </select>
 
-        {modelsData.length ? (
+        {brandData && selectedBike.brand ? (
           <>
-            <label>Modell</label>
+            <label>Typ</label>
             <select
-              value={selectedModel}
-              onChange={(event) => setSelectedModel(event.target.value)}
+              value={selectedBike.type}
+              onChange={(event) => {
+                setSelectedBike({
+                  ...selectedBike,
+                  type: event.target.value,
+                  model: "",
+                  year: "",
+                });
+                setBikeData(null);
+              }}
             >
               <option disabled></option>
-              {modelsData.map((model) => (
-                <option key={model.name}>{model.name}</option>
+              {brandData.types.map((type) => (
+                <option key={type.name}>{type.name}</option>
               ))}
             </select>
           </>
@@ -114,17 +151,49 @@ function App() {
           ""
         )}
 
-        {modelData.length ? (
+        {brandData && selectedBike.type ? (
+          <>
+            <label>Modell</label>
+            <select
+              value={selectedBike.model}
+              onChange={(event) => {
+                setSelectedBike({
+                  ...selectedBike,
+                  model: event.target.value,
+                  year: "",
+                });
+                setBikeData(null);
+              }}
+            >
+              <option disabled></option>
+              {brandData.types
+                .find((type) => type.name === selectedBike.type)
+                .models.map((model) => (
+                  <option key={model.name}>{model.name}</option>
+                ))}
+            </select>
+          </>
+        ) : (
+          ""
+        )}
+
+        {brandData && selectedBike?.model ? (
           <>
             <label>År</label>
             <select
-              value={selectedYear}
-              onChange={(event) => setSelectedYear(event.target.value)}
+              value={selectedBike.year}
+              onChange={(event) => {
+                setSelectedBike({ ...selectedBike, year: event.target.value });
+                setBikeData(null);
+              }}
             >
               <option disabled></option>
-              {modelData.map((model) => (
-                <option key={model.year}>{model.year}</option>
-              ))}
+              {brandData.types
+                .find((type) => type.name === selectedBike.type)
+                .models.find((model) => model.name === selectedBike.model)
+                .years.map((year) => (
+                  <option key={year.name}>{year.name}</option>
+                ))}
             </select>
           </>
         ) : (
@@ -135,7 +204,7 @@ function App() {
       <Main>
         {bikeData ? (
           <>
-            <Heading>{`${selectedBrand} ${selectedModel} ${selectedYear}`}</Heading>
+            <Heading>{`${selectedBike?.brand}, ${selectedBike?.type}, ${selectedBike?.model}, ${selectedBike?.year}`}</Heading>
             {bikeData.images.map((image) => (
               <Image key={image.src} src={image.src} />
             ))}
@@ -144,8 +213,35 @@ function App() {
           ""
         )}
       </Main>
+
+      <footer>Footer</footer>
     </>
   );
 }
+
+const Header = styled.header`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  height: 3rem;
+  border-bottom: 1px solid #eee;
+`;
+
+const Main = styled.main`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+`;
+
+const Heading = styled.h1`
+  font-size: 1rem;
+`;
+
+const Image = styled.img`
+  max-width: 90vw;
+  margin-bottom: 3rem;
+`;
 
 export default App;
