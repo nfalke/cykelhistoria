@@ -1,24 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-import { selectedBikeInterface, bikeDataInterface } from "../App";
+import { bikeDataInterface } from "../App";
 
 interface MainPropsInterface {
   bikeData: bikeDataInterface;
-  selectedBike: selectedBikeInterface;
 }
 
 function Main(props: MainPropsInterface) {
   return (
     <StyledMain>
-      {props.bikeData ? (
+      {props.bikeData && (
         <>
-          <Heading>{`${props.selectedBike?.brand}, ${props.selectedBike?.type}, ${props.selectedBike?.model}, ${props.selectedBike?.year}`}</Heading>
+          <Heading>{`${props.bikeData?.brand}, ${props.bikeData?.type}, ${props.bikeData?.model}, ${props.bikeData?.year}`}</Heading>
           {props.bikeData.images.map((image) => (
             <Image key={image.src} src={image.src} />
           ))}
         </>
-      ) : (
-        ""
       )}
     </StyledMain>
   );

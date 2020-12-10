@@ -1,0 +1,14 @@
+{
+  "brand": "Crescent",
+  "type": "Mountainbike",
+  "models": [
+    {
+      "name": "2044 Ultima",
+      "years": "/bikes/crescent/mountainbike/2044-ultima/years.json"
+    },
+    {
+      "name": "2004 Rimfaxe",
+      "years": "/bikes/crescent/mountainbike/2004-rimfaxe/years.json"
+    }
+  ]
+}

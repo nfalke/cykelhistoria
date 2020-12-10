@@ -1,0 +1,17 @@
+{
+  "brand": "Crescent",
+  "type": "Mountainbike",
+  "model": "2004 Rimfaxe",
+  "year": "1997",
+  "description": "",
+  "images": [
+    {
+      "description": "Cykelpraktikan 1997",
+      "src": "/bikes/crescent/mountainbike/2004-rimfaxe/1997/01.jpg"
+    },
+    {
+      "description": "Cykelpraktikan 1997",
+      "src": "/bikes/crescent/mountainbike/2004-rimfaxe/1997/02.jpg"
+    }
+  ]
+}
