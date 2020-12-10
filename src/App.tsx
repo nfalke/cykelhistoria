@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Header } from "./components/Header";
 import { Main } from "./components/Main";
 import { Footer } from "./components/Footer";
@@ -12,11 +12,12 @@ interface bikeDataInterface {
   images: [
     {
       src: string;
+      description: string;
     }
   ];
 }
 
-function App() {
+const App = () => {
   const [bikeData, setBikeData] = useState<bikeDataInterface>(null);
 
   return (
@@ -26,6 +27,6 @@ function App() {
       <Footer />
     </>
   );
-}
+};
 
 export { App, bikeDataInterface };

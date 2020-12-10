@@ -6,24 +6,32 @@ interface HeaderPropsInterface {
   setBikeData: (data: bikeDataInterface) => void;
 }
 
-function Header(props: HeaderPropsInterface) {
+interface selectedBikeInterface {
+  brand: string;
+  type: string;
+  model: string;
+  year: string;
+}
+
+const Header = (props: HeaderPropsInterface) => {
   const [brandsData, setBrandsData] = useState(null);
   const [typesData, setTypesData] = useState(null);
   const [modelsData, setModelsData] = useState(null);
   const [yearsData, setYearsData] = useState(null);
-  const [selectedBike, setSelectedBike] = useState({
+  const [selectedBike, setSelectedBike] = useState<selectedBikeInterface>({
     brand: "",
     type: "",
     model: "",
     year: "",
   });
+  const [selectedBikeFromUrl, setSelectedBikeFromUrl] = useState(null);
 
-  const onSelectedBikeChange = (data) => {
+  const onSelectedBikeChange = (data: selectedBikeInterface) => {
     if (window.location.pathname) {
       window.history.pushState({}, "", "/");
     }
 
-    if (brandsData && data.brand.length && data.brand !== selectedBike.brand) {
+    if (brandsData && data.brand !== selectedBike.brand) {
       // Fetch types
       fetch(brandsData.brands.find((brand) => brand.name === data.brand).types)
         .then((response) => response.json())
@@ -32,7 +40,7 @@ function Header(props: HeaderPropsInterface) {
         });
     }
 
-    if (typesData && data.type.length && data.type !== selectedBike.type) {
+    if (typesData && data.type !== selectedBike.type) {
       // Fetch models
       fetch(typesData.types.find((type) => type.name === data.type).models)
         .then((response) => response.json())
@@ -41,7 +49,7 @@ function Header(props: HeaderPropsInterface) {
         });
     }
 
-    if (modelsData && data.model.length && data.model !== selectedBike.model) {
+    if (modelsData && data.model !== selectedBike.model) {
       // Fetch years
       fetch(modelsData.models.find((model) => model.name === data.model).years)
         .then((response) => response.json())
@@ -50,12 +58,13 @@ function Header(props: HeaderPropsInterface) {
         });
     }
 
-    if (yearsData && data.year.length && data.year !== selectedBike.year) {
+    if (yearsData && data.year !== selectedBike.year) {
       // Fetch bike
       fetch(yearsData.years.find((year) => year.name === data.year).bike)
         .then((response) => response.json())
         .then((data) => {
           props.setBikeData(data);
+          /*
           window.history.pushState(
             {},
             data.brand + " " + data.type + " " + data.model + " " + data.year,
@@ -69,6 +78,7 @@ function Header(props: HeaderPropsInterface) {
               data.year.toLowerCase() +
               "/"
           );
+          */
         });
     } else {
       props.setBikeData(null);
@@ -77,6 +87,22 @@ function Header(props: HeaderPropsInterface) {
     setSelectedBike(data);
   };
 
+  // If url holds bike info
+  if (window.location.pathname) {
+    const paths = decodeURIComponent(
+      window.location.pathname.substring(1)
+    ).split("/", 4);
+
+    if (paths.length === 4) {
+      setSelectedBikeFromUrl({
+        brand: paths[0],
+        type: paths[1],
+        model: paths[2],
+        year: paths[3],
+      });
+    }
+  }
+
   // On page load
   useEffect(() => {
     // Fetch brands
@@ -84,30 +110,16 @@ function Header(props: HeaderPropsInterface) {
       .then((response) => response.json())
       .then((data) => {
         setBrandsData(data);
-
-        // If url holds selected bike info
-        if (window.location.pathname) {
-          const paths = decodeURIComponent(
-            window.location.pathname.substring(1)
-          ).split("/", 4);
-
-          paths.length === 4 &&
-            onSelectedBikeChange({
-              brand: paths[0],
-              type: paths[1],
-              model: paths[2],
-              year: paths[3],
-            });
-        }
       });
   }, []);
 
   return (
     <StyledHeader>
       {brandsData && (
-        <>
-          <label>Märke</label>
-          <select
+        <div>
+          <StyledLabel htmlFor="selectBrand">Märke:</StyledLabel>
+          <StyledSelect
+            id="selectBrand"
             value={selectedBike.brand}
             onChange={(event) =>
               onSelectedBikeChange({
@@ -122,14 +134,15 @@ function Header(props: HeaderPropsInterface) {
             {brandsData.brands.map((brand) => (
               <option key={brand.name}>{brand.name}</option>
             ))}
-          </select>
-        </>
+          </StyledSelect>
+        </div>
       )}
 
       {typesData && selectedBike.brand && (
-        <>
-          <label>Typ</label>
-          <select
+        <div>
+          <StyledLabel htmlFor="selectType">Typ:</StyledLabel>
+          <StyledSelect
+            id="selectType"
             value={selectedBike.type}
             onChange={(event) =>
               onSelectedBikeChange({
@@ -144,14 +157,15 @@ function Header(props: HeaderPropsInterface) {
             {typesData.types.map((type) => (
               <option key={type.name}>{type.name}</option>
             ))}
-          </select>
-        </>
+          </StyledSelect>
+        </div>
       )}
 
       {modelsData && selectedBike.type && (
-        <>
-          <label>Modell</label>
-          <select
+        <div>
+          <StyledLabel htmlFor="selectModel">Modell:</StyledLabel>
+          <StyledSelect
+            id="selectModel"
             value={selectedBike.model}
             onChange={(event) =>
               onSelectedBikeChange({
@@ -165,14 +179,15 @@ function Header(props: HeaderPropsInterface) {
             {modelsData.models.map((model) => (
               <option key={model.name}>{model.name}</option>
             ))}
-          </select>
-        </>
+          </StyledSelect>
+        </div>
       )}
 
       {yearsData && selectedBike.model && (
-        <>
-          <label>År</label>
-          <select
+        <div>
+          <StyledLabel htmlFor="selectYear">År:</StyledLabel>
+          <StyledSelect
+            id="selectYear"
             value={selectedBike.year}
             onChange={(event) =>
               onSelectedBikeChange({
@@ -185,20 +200,29 @@ function Header(props: HeaderPropsInterface) {
             {yearsData.years.map((year) => (
               <option key={year.name}>{year.name}</option>
             ))}
-          </select>
-        </>
+          </StyledSelect>
+        </div>
       )}
     </StyledHeader>
   );
-}
+};
 
 const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fff;
-  height: 3rem;
-  border-bottom: 1px solid #eee;
+  padding: 1rem;
+`;
+
+const StyledLabel = styled.label`
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  margin-right: 0.3rem;
+  letter-spacing: 1px;
+`;
+
+const StyledSelect = styled.select`
+  margin-right: 1rem;
 `;
 
 export { Header };

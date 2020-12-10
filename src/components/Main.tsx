@@ -6,35 +6,65 @@ interface MainPropsInterface {
   bikeData: bikeDataInterface;
 }
 
-function Main(props: MainPropsInterface) {
+const Main = (props: MainPropsInterface) => {
   return (
     <StyledMain>
       {props.bikeData && (
-        <>
-          <Heading>{`${props.bikeData?.brand}, ${props.bikeData?.type}, ${props.bikeData?.model}, ${props.bikeData?.year}`}</Heading>
+        <StyledContent>
+          <Heading>{`${props.bikeData?.brand} ${props.bikeData?.model}, ${props.bikeData?.year}`}</Heading>
           {props.bikeData.images.map((image) => (
-            <Image key={image.src} src={image.src} />
+            <Figure>
+              <Image key={image.src} src={image.src} />
+              {image.description ? (
+                <Figcaption>{image.description}</Figcaption>
+              ) : (
+                ""
+              )}
+            </Figure>
           ))}
-        </>
+        </StyledContent>
       )}
     </StyledMain>
   );
-}
+};
 
 const StyledMain = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
   flex-grow: 1;
+  background: #f5f5f5;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+`;
+
+const StyledContent = styled.div`
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: 0 3rem;
 `;
 
 const Heading = styled.h1`
-  font-size: 1rem;
+  margin-top: 3rem;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: 0.875rem;
+  letter-spacing: 1px;
+`;
+
+const Figure = styled.figure`
+  margin: 3rem 0;
 `;
 
 const Image = styled.img`
-  max-width: 90vw;
-  margin-bottom: 3rem;
+  max-width: 100%;
+`;
+
+const Figcaption = styled.figcaption`
+  font-size: 0.875rem;
+  font-style: italic;
+  margin-top: 0.5rem;
 `;
 
 export { Main };
