@@ -124,10 +124,12 @@ const Header = (props: HeaderPropsInterface) => {
         .then((response) => response.json())
         .then((data) => {
           setBikeData(data);
+          window.document.title =
+            data.brand + " " + data.model + ", " + data.year;
 
-          window.history.pushState(
+          window.history.replaceState(
             {},
-            data.brand + " " + data.type + " " + data.model + " " + data.year,
+            data.brand + " " + data.model + ", " + data.year,
             "/" +
               data.brand.toLowerCase() +
               "/" +
@@ -151,7 +153,7 @@ const Header = (props: HeaderPropsInterface) => {
   return (
     <StyledHeader>
       {brandsData && (
-        <div>
+        <Fieldset>
           <StyledLabel htmlFor="selectBrand">Märke:</StyledLabel>
           <StyledSelect
             id="selectBrand"
@@ -170,11 +172,11 @@ const Header = (props: HeaderPropsInterface) => {
               <option key={brand.name}>{brand.name}</option>
             ))}
           </StyledSelect>
-        </div>
+        </Fieldset>
       )}
 
       {typesData && selectedBike.brand && (
-        <div>
+        <Fieldset>
           <StyledLabel htmlFor="selectType">Typ:</StyledLabel>
           <StyledSelect
             id="selectType"
@@ -193,11 +195,11 @@ const Header = (props: HeaderPropsInterface) => {
               <option key={type.name}>{type.name}</option>
             ))}
           </StyledSelect>
-        </div>
+        </Fieldset>
       )}
 
       {modelsData && selectedBike.type && (
-        <div>
+        <Fieldset>
           <StyledLabel htmlFor="selectModel">Modell:</StyledLabel>
           <StyledSelect
             id="selectModel"
@@ -215,11 +217,11 @@ const Header = (props: HeaderPropsInterface) => {
               <option key={model.name}>{model.name}</option>
             ))}
           </StyledSelect>
-        </div>
+        </Fieldset>
       )}
 
       {yearsData && selectedBike.model && (
-        <div>
+        <Fieldset>
           <StyledLabel htmlFor="selectYear">År:</StyledLabel>
           <StyledSelect
             id="selectYear"
@@ -236,7 +238,7 @@ const Header = (props: HeaderPropsInterface) => {
               <option key={year.name}>{year.name}</option>
             ))}
           </StyledSelect>
-        </div>
+        </Fieldset>
       )}
     </StyledHeader>
   );
@@ -244,16 +246,27 @@ const Header = (props: HeaderPropsInterface) => {
 
 const StyledHeader = styled.header`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
+  padding: 0.5rem;
+  flex-wrap: wrap;
+
+  @media (min-width: 768px) {
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
+const Fieldset = styled.header``;
+
 const StyledLabel = styled.label`
-  text-transform: uppercase;
   font-size: 0.875rem;
   margin-right: 0.3rem;
   letter-spacing: 1px;
+  display: block;
+
+  @media (min-width: 768px) {
+    display: inline;
+  }
 `;
 
 const StyledSelect = styled.select`

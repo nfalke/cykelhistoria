@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { bikeDataInterface } from "../App";
+import { bikeDataInterface } from "./Header";
 
 interface MainPropsInterface {
   bikeData: bikeDataInterface;
@@ -12,6 +12,11 @@ const Main = (props: MainPropsInterface) => {
       {props.bikeData && (
         <StyledContent>
           <Heading>{`${props.bikeData?.brand} ${props.bikeData?.model}, ${props.bikeData?.year}`}</Heading>
+          {props.bikeData?.description ? (
+            <Preamble>{props.bikeData?.description}</Preamble>
+          ) : (
+            ""
+          )}
           {props.bikeData.images.map((image) => (
             <Figure key={image.src}>
               <Image src={image.src} />
@@ -34,27 +39,38 @@ const StyledMain = styled.main`
   align-items: center;
   flex-grow: 1;
   background: #f5f5f5;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
 `;
 
 const StyledContent = styled.div`
   margin: 0 auto;
   max-width: 1000px;
-  padding: 0 3rem;
+  padding: 0 0.5rem;
+
+  @media (min-width: 768px) {
+    padding: 0 3rem;
+  }
 `;
 
 const Heading = styled.h1`
   margin-top: 3rem;
   text-align: center;
-  text-transform: uppercase;
   font-weight: normal;
   font-size: 0.875rem;
   letter-spacing: 1px;
 `;
 
+const Preamble = styled.p`
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+`;
+
 const Figure = styled.figure`
   margin: 3rem 0;
+  line-height: 0;
 `;
 
 const Image = styled.img`
@@ -62,9 +78,11 @@ const Image = styled.img`
 `;
 
 const Figcaption = styled.figcaption`
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-style: italic;
   margin-top: 0.5rem;
+  line-height: 1.6;
+  color: #999;
 `;
 
 export { Main };
