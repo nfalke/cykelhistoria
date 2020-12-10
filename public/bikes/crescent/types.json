@@ -4,10 +4,6 @@
     {
       "name": "Mountainbike",
       "models": "/bikes/crescent/mountainbike/models.json"
-    },
-    {
-      "name": "Racer",
-      "models": "/bikes/crescent/road/models.json"
     }
   ]
 }
