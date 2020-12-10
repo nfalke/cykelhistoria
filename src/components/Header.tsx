@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { bikeDataInterface } from "../App";
 
 interface HeaderPropsInterface {
+  bikeData: bikeDataInterface;
   setBikeData: (data: bikeDataInterface) => void;
 }
 
@@ -13,58 +13,118 @@ interface selectedBikeInterface {
   year: string;
 }
 
+interface bikeDataInterface {
+  brand: string;
+  type: string;
+  model: string;
+  year: string;
+  description: string;
+  images: [
+    {
+      src: string;
+      description: string;
+    }
+  ];
+}
+
 const Header = (props: HeaderPropsInterface) => {
   const [brandsData, setBrandsData] = useState(null);
   const [typesData, setTypesData] = useState(null);
   const [modelsData, setModelsData] = useState(null);
   const [yearsData, setYearsData] = useState(null);
+  const [bikeData, setBikeData] = useState<bikeDataInterface>(null);
   const [selectedBike, setSelectedBike] = useState<selectedBikeInterface>({
     brand: "",
     type: "",
     model: "",
     year: "",
   });
-  const [selectedBikeFromUrl, setSelectedBikeFromUrl] = useState(null);
 
-  const onSelectedBikeChange = (data: selectedBikeInterface) => {
-    if (window.location.pathname) {
-      window.history.pushState({}, "", "/");
-    }
+  // On page load
+  useEffect(() => {
+    // Fetch brands
+    fetch("/bikes/brands.json")
+      .then((response) => response.json())
+      .then((data) => {
+        setBrandsData(data);
 
-    if (brandsData && data.brand !== selectedBike.brand) {
+        // If url holds bike info
+        if (window.location.pathname) {
+          const paths = decodeURIComponent(
+            window.location.pathname.substring(1)
+          ).split("/", 4);
+
+          if (paths.length === 4) {
+            setSelectedBike({
+              brand: paths[0],
+              type: paths[1],
+              model: paths[2],
+              year: paths[3],
+            });
+          }
+        }
+      });
+  }, []);
+
+  useEffect(() => {
+    if (brandsData && selectedBike.brand) {
       // Fetch types
-      fetch(brandsData.brands.find((brand) => brand.name === data.brand).types)
+      fetch(
+        brandsData.brands.find(
+          (brand) =>
+            brand.name.toLowerCase() === selectedBike.brand.toLowerCase()
+        ).types
+      )
         .then((response) => response.json())
         .then((data) => {
           setTypesData(data);
         });
     }
+  }, [brandsData, selectedBike.brand]);
 
-    if (typesData && data.type !== selectedBike.type) {
+  useEffect(() => {
+    if (typesData && selectedBike.type) {
       // Fetch models
-      fetch(typesData.types.find((type) => type.name === data.type).models)
+      fetch(
+        typesData.types.find(
+          (type) => type.name.toLowerCase() === selectedBike.type.toLowerCase()
+        ).models
+      )
         .then((response) => response.json())
         .then((data) => {
           setModelsData(data);
         });
     }
+  }, [typesData, selectedBike.type]);
 
-    if (modelsData && data.model !== selectedBike.model) {
+  useEffect(() => {
+    if (modelsData && selectedBike.model) {
       // Fetch years
-      fetch(modelsData.models.find((model) => model.name === data.model).years)
+      fetch(
+        modelsData.models.find(
+          (model) =>
+            model.name.toLowerCase() === selectedBike.model.toLowerCase()
+        ).years
+      )
         .then((response) => response.json())
         .then((data) => {
           setYearsData(data);
         });
     }
+  }, [modelsData, selectedBike.model]);
 
-    if (yearsData && data.year !== selectedBike.year) {
+  useEffect(() => {
+    if (yearsData && selectedBike.year) {
       // Fetch bike
-      fetch(yearsData.years.find((year) => year.name === data.year).bike)
+      fetch(
+        yearsData.years.find(
+          (year) => year.name.toLowerCase() === selectedBike.year.toLowerCase()
+        ).bike
+      )
         .then((response) => response.json())
         .then((data) => {
-          props.setBikeData(data);
-          /*
+          setBikeData(data);
+
           window.history.pushState(
             {},
             data.brand + " " + data.type + " " + data.model + " " + data.year,
@@ -78,40 +138,15 @@ const Header = (props: HeaderPropsInterface) => {
               data.year.toLowerCase() +
               "/"
           );
-          */
         });
-    } else {
-      props.setBikeData(null);
     }
+  }, [yearsData, selectedBike.year]);
 
-    setSelectedBike(data);
-  };
-
-  // If url holds bike info
-  if (window.location.pathname) {
-    const paths = decodeURIComponent(
-      window.location.pathname.substring(1)
-    ).split("/", 4);
-
-    if (paths.length === 4) {
-      setSelectedBikeFromUrl({
-        brand: paths[0],
-        type: paths[1],
-        model: paths[2],
-        year: paths[3],
-      });
-    }
-  }
-
-  // On page load
   useEffect(() => {
-    // Fetch brands
-    fetch("/bikes/brands.json")
-      .then((response) => response.json())
-      .then((data) => {
-        setBrandsData(data);
-      });
-  }, []);
+    if (bikeData && bikeData !== props.bikeData) {
+      props.setBikeData(bikeData);
+    }
+  }, [bikeData, props.setBikeData, props]);
 
   return (
     <StyledHeader>
@@ -122,7 +157,7 @@ const Header = (props: HeaderPropsInterface) => {
             id="selectBrand"
             value={selectedBike.brand}
             onChange={(event) =>
-              onSelectedBikeChange({
+              setSelectedBike({
                 brand: event.target.value,
                 type: "",
                 model: "",
@@ -145,7 +180,7 @@ const Header = (props: HeaderPropsInterface) => {
             id="selectType"
             value={selectedBike.type}
             onChange={(event) =>
-              onSelectedBikeChange({
+              setSelectedBike({
                 ...selectedBike,
                 type: event.target.value,
                 model: "",
@@ -168,7 +203,7 @@ const Header = (props: HeaderPropsInterface) => {
             id="selectModel"
             value={selectedBike.model}
             onChange={(event) =>
-              onSelectedBikeChange({
+              setSelectedBike({
                 ...selectedBike,
                 model: event.target.value,
                 year: "",
@@ -190,7 +225,7 @@ const Header = (props: HeaderPropsInterface) => {
             id="selectYear"
             value={selectedBike.year}
             onChange={(event) =>
-              onSelectedBikeChange({
+              setSelectedBike({
                 ...selectedBike,
                 year: event.target.value,
               })
@@ -225,4 +260,4 @@ const StyledSelect = styled.select`
   margin-right: 1rem;
 `;
 
-export { Header };
+export { Header, bikeDataInterface };

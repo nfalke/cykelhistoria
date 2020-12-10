@@ -3,10 +3,6 @@
     {
       "name": "Crescent",
       "types": "/bikes/crescent/types.json"
-    },
-    {
-      "name": "Monark",
-      "types": ""
     }
   ]
 }

@@ -13,8 +13,8 @@ const Main = (props: MainPropsInterface) => {
         <StyledContent>
           <Heading>{`${props.bikeData?.brand} ${props.bikeData?.model}, ${props.bikeData?.year}`}</Heading>
           {props.bikeData.images.map((image) => (
-            <Figure>
-              <Image key={image.src} src={image.src} />
+            <Figure key={image.src}>
+              <Image src={image.src} />
               {image.description ? (
                 <Figcaption>{image.description}</Figcaption>
               ) : (
