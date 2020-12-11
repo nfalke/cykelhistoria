@@ -249,14 +249,16 @@ const StyledHeader = styled.header`
   padding: 0.5rem;
   flex-wrap: wrap;
 
-  @media (min-width: 768px) {
+  @media (min-width: 500px) {
     padding: 1rem;
     justify-content: center;
     align-items: center;
   }
 `;
 
-const Fieldset = styled.header``;
+const Fieldset = styled.header`
+  padding: 0.5rem;
+`;
 
 const StyledLabel = styled.label`
   font-size: 0.875rem;
@@ -264,13 +266,11 @@ const StyledLabel = styled.label`
   letter-spacing: 1px;
   display: block;
 
-  @media (min-width: 768px) {
+  @media (min-width: 610px) {
     display: inline;
   }
 `;
 
-const StyledSelect = styled.select`
-  margin-right: 1rem;
-`;
+const StyledSelect = styled.select``;
 
 export { Header, bikeDataInterface };

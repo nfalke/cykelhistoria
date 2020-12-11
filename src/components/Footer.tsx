@@ -8,9 +8,8 @@ function Footer(props: FooterPropsInterface) {
     <StyledFooter>
       <FooterContent>
         Cykelhistoria.se dokummenterar och bevarar information om cyklar vars
-        storhetstid pågick långt före internets uppkomst. Har du material att
-        dela med dig av, hör av dig till{" "}
-        <Link href="#">kontakt@cykelhistoria.se</Link>.
+        storhetstid pågick före internets uppkomst. Har du material att dela med
+        dig av, hör av dig till <Link href="#">kontakt@cykelhistoria.se</Link>.
       </FooterContent>
     </StyledFooter>
   );
@@ -22,8 +21,9 @@ const StyledFooter = styled.footer`
   color: #999;
 `;
 
-const FooterContent = styled.footer`
+const FooterContent = styled.p`
   text-align: center;
+  margin: 0;
 `;
 
 const Link = styled.a`

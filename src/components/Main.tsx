@@ -43,20 +43,28 @@ const StyledMain = styled.main`
 
 const StyledContent = styled.div`
   margin: 0 auto;
-  max-width: 1000px;
-  padding: 0 0.5rem;
+  max-width: 1200px;
+  padding: 0 1rem;
 
-  @media (min-width: 768px) {
+  @media (min-width: 500px) {
+    padding: 0 2rem;
+  }
+
+  @media (min-width: 800px) {
     padding: 0 3rem;
   }
 `;
 
 const Heading = styled.h1`
-  margin-top: 3rem;
+  margin-top: 2rem;
   text-align: center;
   font-weight: normal;
   font-size: 0.875rem;
   letter-spacing: 1px;
+
+  @media (min-width: 500px) {
+    margin-top: 3rem;
+  }
 `;
 
 const Preamble = styled.p`
@@ -69,8 +77,12 @@ const Preamble = styled.p`
 `;
 
 const Figure = styled.figure`
-  margin: 3rem 0;
+  margin: 2rem 0;
   line-height: 0;
+
+  @media (min-width: 500px) {
+    margin: 3rem 0;
+  }
 `;
 
 const Image = styled.img`
