@@ -9,26 +9,30 @@ interface MainPropsInterface {
 const Main = (props: MainPropsInterface) => {
   return (
     <StyledMain>
-      {props.bikeData && (
-        <StyledContent>
-          <Heading>{`${props.bikeData?.brand} ${props.bikeData?.model}, ${props.bikeData?.year}`}</Heading>
-          {props.bikeData?.description ? (
-            <Preamble>{props.bikeData?.description}</Preamble>
-          ) : (
-            ""
-          )}
-          {props.bikeData.images.map((image) => (
-            <Figure key={image.src}>
-              <Image src={image.src} />
-              {image.description ? (
-                <Figcaption>{image.description}</Figcaption>
-              ) : (
-                ""
-              )}
-            </Figure>
-          ))}
-        </StyledContent>
-      )}
+      <StyledContent>
+        {!props.bikeData && <Heading>Välj cykel här ovanför &#10548;</Heading>}
+        {props.bikeData && (
+          <>
+            <Heading>{`${props.bikeData?.brand} ${props.bikeData?.model}, ${props.bikeData?.year}`}</Heading>
+            {props.bikeData?.description ? (
+              <Preamble>{props.bikeData?.description}</Preamble>
+            ) : (
+              ""
+            )}
+
+            {props.bikeData.images.map((image) => (
+              <Figure key={image.src}>
+                <Image src={image.src} />
+                {image.description ? (
+                  <Figcaption>{image.description}</Figcaption>
+                ) : (
+                  ""
+                )}
+              </Figure>
+            ))}
+          </>
+        )}
+      </StyledContent>
     </StyledMain>
   );
 };
