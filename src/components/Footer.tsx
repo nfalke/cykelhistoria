@@ -9,7 +9,11 @@ function Footer(props: FooterPropsInterface) {
       <FooterContent>
         Cykelhistoria.se dokumenterar och bevarar information om cyklar vars
         storhetstid pågick före internets uppkomst. Har du material att dela med
-        dig av, hör av dig till <Link href="#">kontakt@cykelhistoria.se</Link>.
+        dig av, hör av dig till{" "}
+        <Link href="mailto:kontakt@cykelhistoria.se">
+          kontakt@cykelhistoria.se
+        </Link>
+        .
       </FooterContent>
     </StyledFooter>
   );

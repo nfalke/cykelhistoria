@@ -43,7 +43,7 @@ const Header = (props: HeaderPropsInterface) => {
   // On page load
   useEffect(() => {
     // Fetch brands
-    fetch("/bikes/brands.json")
+    fetch("./bikes/brands.json")
       .then((response) => response.json())
       .then((data) => {
         setBrandsData(data);
