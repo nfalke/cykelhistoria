@@ -49,9 +49,9 @@ const Header = (props: HeaderPropsInterface) => {
         setBrandsData(data);
 
         // If url holds bike info
-        if (window.location.hash) {
+        if (window.location.pathname) {
           const paths = decodeURIComponent(
-            window.location.hash.substring(1)
+            window.location.pathname.substring(1)
           ).split("/", 4);
 
           if (paths.length === 4) {
@@ -128,7 +128,7 @@ const Header = (props: HeaderPropsInterface) => {
           window.history.replaceState(
             {},
             data.brand + " " + data.model + ", " + data.year,
-            "/#" +
+            "/" +
               data.brand.toLowerCase() +
               "/" +
               data.type.toLowerCase() +
