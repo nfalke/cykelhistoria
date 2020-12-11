@@ -21,7 +21,7 @@ function Footer(props: FooterPropsInterface) {
 
 const StyledFooter = styled.footer`
   padding: 1rem;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   color: #999;
 `;
 

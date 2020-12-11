@@ -267,16 +267,17 @@ const Fieldset = styled.header`
 `;
 
 const StyledLabel = styled.label`
-  font-size: 0.875rem;
   margin-right: 0.3rem;
   letter-spacing: 1px;
   display: block;
 
-  @media (min-width: 610px) {
+  @media (min-width: 700px) {
     display: inline;
   }
 `;
 
-const StyledSelect = styled.select``;
+const StyledSelect = styled.select`
+  font-size: 1rem;
+`;
 
 export { Header, bikeDataInterface };

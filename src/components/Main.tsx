@@ -63,7 +63,7 @@ const Heading = styled.h1`
   margin-top: 2rem;
   text-align: center;
   font-weight: normal;
-  font-size: 0.875rem;
+  font-size: 1rem;
   letter-spacing: 1px;
 
   @media (min-width: 500px) {
@@ -94,7 +94,7 @@ const Image = styled.img`
 `;
 
 const Figcaption = styled.figcaption`
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-style: italic;
   margin-top: 0.5rem;
   line-height: 1.6;
