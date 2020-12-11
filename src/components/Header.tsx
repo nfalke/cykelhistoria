@@ -71,8 +71,7 @@ const Header = (props: HeaderPropsInterface) => {
       // Fetch types
       fetch(
         brandsData.brands.find(
-          (brand) =>
-            brand.name.toLowerCase() === selectedBike.brand.toLowerCase()
+          (brand) => brand.name.toLowerCase() === selectedBike.brand
         ).types
       )
         .then((response) => response.json())
@@ -87,7 +86,7 @@ const Header = (props: HeaderPropsInterface) => {
       // Fetch models
       fetch(
         typesData.types.find(
-          (type) => type.name.toLowerCase() === selectedBike.type.toLowerCase()
+          (type) => type.name.toLowerCase() === selectedBike.type
         ).models
       )
         .then((response) => response.json())
@@ -102,8 +101,7 @@ const Header = (props: HeaderPropsInterface) => {
       // Fetch years
       fetch(
         modelsData.models.find(
-          (model) =>
-            model.name.toLowerCase() === selectedBike.model.toLowerCase()
+          (model) => model.name.toLowerCase() === selectedBike.model
         ).years
       )
         .then((response) => response.json())
@@ -118,7 +116,7 @@ const Header = (props: HeaderPropsInterface) => {
       // Fetch bike
       fetch(
         yearsData.years.find(
-          (year) => year.name.toLowerCase() === selectedBike.year.toLowerCase()
+          (year) => year.name.toLowerCase() === selectedBike.year
         ).bike
       )
         .then((response) => response.json())
@@ -169,7 +167,9 @@ const Header = (props: HeaderPropsInterface) => {
           >
             <option disabled></option>
             {brandsData.brands.map((brand) => (
-              <option key={brand.name}>{brand.name}</option>
+              <option key={brand.name} value={brand.name.toLowerCase()}>
+                {brand.name}
+              </option>
             ))}
           </StyledSelect>
         </Fieldset>
@@ -192,7 +192,9 @@ const Header = (props: HeaderPropsInterface) => {
           >
             <option disabled></option>
             {typesData.types.map((type) => (
-              <option key={type.name}>{type.name}</option>
+              <option key={type.name} value={type.name.toLowerCase()}>
+                {type.name}
+              </option>
             ))}
           </StyledSelect>
         </Fieldset>
@@ -214,7 +216,9 @@ const Header = (props: HeaderPropsInterface) => {
           >
             <option disabled></option>
             {modelsData.models.map((model) => (
-              <option key={model.name}>{model.name}</option>
+              <option key={model.name} value={model.name.toLowerCase()}>
+                {model.name}
+              </option>
             ))}
           </StyledSelect>
         </Fieldset>
@@ -235,7 +239,9 @@ const Header = (props: HeaderPropsInterface) => {
           >
             <option disabled></option>
             {yearsData.years.map((year) => (
-              <option key={year.name}>{year.name}</option>
+              <option key={year.name} value={year.name.toLowerCase()}>
+                {year.name}
+              </option>
             ))}
           </StyledSelect>
         </Fieldset>
