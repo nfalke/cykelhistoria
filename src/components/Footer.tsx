@@ -7,7 +7,7 @@ function Footer(props: FooterPropsInterface) {
   return (
     <StyledFooter>
       <FooterContent>
-        Cykelhistoria.se dokummenterar och bevarar information om cyklar vars
+        Cykelhistoria.se dokumenterar och bevarar information om cyklar vars
         storhetstid pågick före internets uppkomst. Har du material att dela med
         dig av, hör av dig till <Link href="#">kontakt@cykelhistoria.se</Link>.
       </FooterContent>
