@@ -1,0 +1,17 @@
+{
+  "brand": "Crescent",
+  "type": "Mountainbike",
+  "model": "2024 Lodur",
+  "year": "1997",
+  "description": "Aggressiv tävlingscykel med komponenter på hög nivå till ett pris på medelnivå. Exklusiv Cromo-ram med reducerade rör och en utvändig out-spiral trådförstärkning, som ger extra stabilitet, vridstyvhet och en egen karaktär. V-brake och 24 växlar på LX-nivå. Silent Clutch baknav, som rullar utan tick och svarar direkt på pedaltryck. Nytt förstärkt vevparti, styre och sadel. Separerade broms- och växelreglage. Rå följeslagare med personlighet.",
+  "images": [
+    {
+      "description": "Cykelpraktikan 1997",
+      "src": "/bikes/crescent/mountainbike/2024-lodur/1997/crescent-2024-lodur-1997-01.jpg"
+    },
+    {
+      "description": "Cykelpraktikan 1997",
+      "src": "/bikes/crescent/mountainbike/2024-lodur/1997/crescent-2024-lodur-1997-02.jpg"
+    }
+  ]
+}

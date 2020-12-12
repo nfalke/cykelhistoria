@@ -7,8 +7,16 @@
       "years": "/bikes/crescent/mountainbike/2084-gram/years.json"
     },
     {
+      "name": "2064 Freke",
+      "years": "/bikes/crescent/mountainbike/2064-freke/years.json"
+    },
+    {
       "name": "2044 Ultima",
       "years": "/bikes/crescent/mountainbike/2044-ultima/years.json"
+    },
+    {
+      "name": "2024 Lodur",
+      "years": "/bikes/crescent/mountainbike/2024-lodur/years.json"
     },
     {
       "name": "2004 Rimfaxe",
