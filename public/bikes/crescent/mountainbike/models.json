@@ -3,6 +3,10 @@
   "type": "Mountainbike",
   "models": [
     {
+      "name": "2084 Gram",
+      "years": "/bikes/crescent/mountainbike/2084-gram/years.json"
+    },
+    {
       "name": "2044 Ultima",
       "years": "/bikes/crescent/mountainbike/2044-ultima/years.json"
     },
