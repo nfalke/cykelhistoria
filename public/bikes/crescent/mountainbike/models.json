@@ -13,6 +13,10 @@
     {
       "name": "2004 Rimfaxe",
       "years": "/bikes/crescent/mountainbike/2004-rimfaxe/years.json"
+    },
+    {
+      "name": "2000 Mjölner",
+      "years": "/bikes/crescent/mountainbike/2000-mjolner/years.json"
     }
   ]
 }
