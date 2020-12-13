@@ -1,0 +1,11 @@
+{
+  "brand": "Crescent",
+  "type": "Mountainbike",
+  "model": "2021 Bjarke",
+  "years": [
+    {
+      "name": "1997",
+      "bike": "/bikes/crescent/mountainbike/2021-bjarke/1997/bike.json"
+    }
+  ]
+}
