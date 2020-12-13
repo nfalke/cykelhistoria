@@ -1,0 +1,11 @@
+{
+  "brand": "Crescent",
+  "type": "Trekking",
+  "model": "2301 (STX-RC)",
+  "years": [
+    {
+      "name": "1997",
+      "bike": "/bikes/crescent/trekking/2301-stx-rc/1997/bike.json"
+    }
+  ]
+}

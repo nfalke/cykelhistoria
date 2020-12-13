@@ -4,6 +4,10 @@
     {
       "name": "Mountainbike",
       "models": "/bikes/crescent/mountainbike/models.json"
+    },
+    {
+      "name": "Trekking",
+      "models": "/bikes/crescent/trekking/models.json"
     }
   ]
 }
