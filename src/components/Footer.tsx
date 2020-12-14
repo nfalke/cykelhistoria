@@ -10,7 +10,7 @@ function Footer(props: FooterPropsInterface) {
         Cykelhistoria.se dokumenterar och bevarar information om cyklar vars
         storhetstid varade före internets uppkomst. Har du material att dela med
         dig av, hör av dig till{" "}
-        <Link href="mailto:kontakt@cykelhistoria.se">
+        <Link href="mailto:cykelhistoria.@gmail.com">
           kontakt@cykelhistoria.se
         </Link>
         .
