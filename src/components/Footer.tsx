@@ -11,7 +11,7 @@ function Footer(props: FooterPropsInterface) {
         storhetstid varade före internets uppkomst. Har du material att dela med
         dig av, hör av dig till{" "}
         <Link href="mailto:cykelhistoria@gmail.com">
-          kontakt@cykelhistoria.se
+          cykelhistoria@gmail.com
         </Link>
         .
       </FooterContent>
