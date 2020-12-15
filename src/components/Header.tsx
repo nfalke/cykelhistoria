@@ -70,9 +70,8 @@ const Header = (props: HeaderPropsInterface) => {
     if (brandsData && selectedBike.brand) {
       // Fetch types
       fetch(
-        brandsData.brands.find(
-          (brand) => brand.name.toLowerCase() === selectedBike.brand
-        ).types
+        brandsData.brands.find((brand) => brand.slug === selectedBike.brand)
+          .types
       )
         .then((response) => response.json())
         .then((data) => {
@@ -85,9 +84,7 @@ const Header = (props: HeaderPropsInterface) => {
     if (typesData && selectedBike.type) {
       // Fetch models
       fetch(
-        typesData.types.find(
-          (type) => type.name.toLowerCase() === selectedBike.type
-        ).models
+        typesData.types.find((type) => type.slug === selectedBike.type).models
       )
         .then((response) => response.json())
         .then((data) => {
@@ -100,9 +97,8 @@ const Header = (props: HeaderPropsInterface) => {
     if (modelsData && selectedBike.model) {
       // Fetch years
       fetch(
-        modelsData.models.find(
-          (model) => model.name.toLowerCase() === selectedBike.model
-        ).years
+        modelsData.models.find((model) => model.slug === selectedBike.model)
+          .years
       )
         .then((response) => response.json())
         .then((data) => {
@@ -115,9 +111,7 @@ const Header = (props: HeaderPropsInterface) => {
     if (yearsData && selectedBike.year) {
       // Fetch bike
       fetch(
-        yearsData.years.find(
-          (year) => year.name.toLowerCase() === selectedBike.year
-        ).bike
+        yearsData.years.find((year) => year.name === selectedBike.year).bike
       )
         .then((response) => response.json())
         .then((data) => {
@@ -129,18 +123,18 @@ const Header = (props: HeaderPropsInterface) => {
             {},
             data.brand + " " + data.model + ", " + data.year,
             "/" +
-              data.brand.toLowerCase() +
+              selectedBike.brand +
               "/" +
-              data.type.toLowerCase() +
+              selectedBike.type +
               "/" +
-              data.model.toLowerCase() +
+              selectedBike.model +
               "/" +
-              data.year.toLowerCase() +
+              selectedBike.year +
               "/"
           );
         });
     }
-  }, [yearsData, selectedBike.year]);
+  }, [yearsData, selectedBike]);
 
   useEffect(() => {
     if (bikeData && bikeData !== props.bikeData) {
@@ -167,7 +161,7 @@ const Header = (props: HeaderPropsInterface) => {
           >
             <option disabled></option>
             {brandsData.brands.map((brand) => (
-              <option key={brand.name} value={brand.name.toLowerCase()}>
+              <option key={brand.slug} value={brand.slug}>
                 {brand.name}
               </option>
             ))}
@@ -192,7 +186,7 @@ const Header = (props: HeaderPropsInterface) => {
           >
             <option disabled></option>
             {typesData.types.map((type) => (
-              <option key={type.name} value={type.name.toLowerCase()}>
+              <option key={type.slug} value={type.slug}>
                 {type.name}
               </option>
             ))}
@@ -216,7 +210,7 @@ const Header = (props: HeaderPropsInterface) => {
           >
             <option disabled></option>
             {modelsData.models.map((model) => (
-              <option key={model.name} value={model.name.toLowerCase()}>
+              <option key={model.slug} value={model.slug}>
                 {model.name}
               </option>
             ))}
@@ -239,7 +233,7 @@ const Header = (props: HeaderPropsInterface) => {
           >
             <option disabled></option>
             {yearsData.years.map((year) => (
-              <option key={year.name} value={year.name.toLowerCase()}>
+              <option key={year.name} value={year.name}>
                 {year.name}
               </option>
             ))}
