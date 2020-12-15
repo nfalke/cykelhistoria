@@ -3,13 +3,11 @@
   "types": [
     {
       "name": "Mountainbike",
-      "slug": "mountainbike",
-      "models": "/bikes/crescent/mountainbike/models.json"
+      "slug": "mountainbike"
     },
     {
       "name": "Trekking",
-      "slug": "trekking",
-      "models": "/bikes/crescent/trekking/models.json"
+      "slug": "trekking"
     }
   ]
 }

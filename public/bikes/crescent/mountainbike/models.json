@@ -4,43 +4,35 @@
   "models": [
     {
       "name": "2084 Gram",
-      "slug": "2084-gram",
-      "years": "/bikes/crescent/mountainbike/2084-gram/years.json"
+      "slug": "2084-gram"
     },
     {
       "name": "2064 Freke",
-      "slug": "2064-freke",
-      "years": "/bikes/crescent/mountainbike/2064-freke/years.json"
+      "slug": "2064-freke"
     },
     {
       "name": "2044 Ultima",
-      "slug": "2044-ultima",
-      "years": "/bikes/crescent/mountainbike/2044-ultima/years.json"
+      "slug": "2044-ultima"
     },
     {
       "name": "2041 Oden",
-      "slug": "2041-oden",
-      "years": "/bikes/crescent/mountainbike/2041-oden/years.json"
+      "slug": "2041-oden"
     },
     {
       "name": "2024 Lodur",
-      "slug": "2024-lodur",
-      "years": "/bikes/crescent/mountainbike/2024-lodur/years.json"
+      "slug": "2024-lodur"
     },
     {
       "name": "2021 Bjarke",
-      "slug": "2021-bjarke",
-      "years": "/bikes/crescent/mountainbike/2021-bjarke/years.json"
+      "slug": "2021-bjarke"
     },
     {
       "name": "2004 Rimfaxe",
-      "slug": "2004-rimfaxe",
-      "years": "/bikes/crescent/mountainbike/2004-rimfaxe/years.json"
+      "slug": "2004-rimfaxe"
     },
     {
       "name": "2000 Mjölner",
-      "slug": "2000-mjolner",
-      "years": "/bikes/crescent/mountainbike/2000-mjolner/years.json"
+      "slug": "2000-mjolner"
     }
   ]
 }

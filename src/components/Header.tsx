@@ -67,51 +67,70 @@ const Header = (props: HeaderPropsInterface) => {
   }, []);
 
   useEffect(() => {
-    if (brandsData && selectedBike.brand) {
+    if (selectedBike.brand) {
       // Fetch types
-      fetch(
-        brandsData.brands.find((brand) => brand.slug === selectedBike.brand)
-          .types
-      )
+      fetch("/bikes/" + selectedBike.brand + "/types.json")
         .then((response) => response.json())
         .then((data) => {
           setTypesData(data);
         });
     }
-  }, [brandsData, selectedBike.brand]);
+  }, [selectedBike.brand]);
 
   useEffect(() => {
-    if (typesData && selectedBike.type) {
+    if (selectedBike.brand && selectedBike.type) {
       // Fetch models
       fetch(
-        typesData.types.find((type) => type.slug === selectedBike.type).models
+        "/bikes/" +
+          selectedBike.brand +
+          "/" +
+          selectedBike.type +
+          "/models.json"
       )
         .then((response) => response.json())
         .then((data) => {
           setModelsData(data);
         });
     }
-  }, [typesData, selectedBike.type]);
+  }, [selectedBike.brand, selectedBike.type]);
 
   useEffect(() => {
-    if (modelsData && selectedBike.model) {
+    if (selectedBike.brand && selectedBike.type && selectedBike.model) {
       // Fetch years
       fetch(
-        modelsData.models.find((model) => model.slug === selectedBike.model)
-          .years
+        "/bikes/" +
+          selectedBike.brand +
+          "/" +
+          selectedBike.type +
+          "/" +
+          selectedBike.model +
+          "/years.json"
       )
         .then((response) => response.json())
         .then((data) => {
           setYearsData(data);
         });
     }
-  }, [modelsData, selectedBike.model]);
+  }, [selectedBike.brand, selectedBike.type, selectedBike.model]);
 
   useEffect(() => {
-    if (yearsData && selectedBike.year) {
+    if (
+      selectedBike.brand &&
+      selectedBike.type &&
+      selectedBike.model &&
+      selectedBike.year
+    ) {
       // Fetch bike
       fetch(
-        yearsData.years.find((year) => year.name === selectedBike.year).bike
+        "/bikes/" +
+          selectedBike.brand +
+          "/" +
+          selectedBike.type +
+          "/" +
+          selectedBike.model +
+          "/" +
+          selectedBike.year +
+          "/bike.json"
       )
         .then((response) => response.json())
         .then((data) => {
@@ -134,7 +153,7 @@ const Header = (props: HeaderPropsInterface) => {
           );
         });
     }
-  }, [yearsData, selectedBike]);
+  }, [selectedBike]);
 
   useEffect(() => {
     if (bikeData && bikeData !== props.bikeData) {

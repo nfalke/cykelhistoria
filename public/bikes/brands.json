@@ -2,8 +2,7 @@
   "brands": [
     {
       "name": "Crescent",
-      "slug": "crescent",
-      "types": "/bikes/crescent/types.json"
+      "slug": "crescent"
     }
   ]
 }
