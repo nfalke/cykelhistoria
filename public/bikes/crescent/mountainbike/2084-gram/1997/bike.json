@@ -7,11 +7,11 @@
   "images": [
     {
       "description": "Cykelpraktikan 1997",
-      "src": "/bikes/crescent/mountainbike/2084-gram/1997/crescent-2084-gram-1997-01.jpg"
+      "filename": "crescent-2084-gram-1997-01.jpg"
     },
     {
       "description": "Cykelpraktikan 1997",
-      "src": "/bikes/crescent/mountainbike/2084-gram/1997/crescent-2084-gram-1997-02.jpg"
+      "filename": "crescent-2084-gram-1997-02.jpg"
     }
   ]
 }

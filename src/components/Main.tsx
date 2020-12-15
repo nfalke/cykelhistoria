@@ -21,8 +21,10 @@ const Main = (props: MainPropsInterface) => {
             )}
 
             {props.bikeData.images.map((image) => (
-              <Figure key={image.src}>
-                <Image src={image.src} />
+              <Figure key={image.filename}>
+                <Image
+                  src={"/bikes" + window.location.pathname + image.filename}
+                />
                 {image.description ? (
                   <Figcaption>{image.description}</Figcaption>
                 ) : (

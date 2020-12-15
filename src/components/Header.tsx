@@ -21,7 +21,7 @@ interface bikeDataInterface {
   description: string;
   images: [
     {
-      src: string;
+      filename: string;
       description: string;
     }
   ];
