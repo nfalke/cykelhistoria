@@ -52,16 +52,14 @@ const Header = (props: HeaderPropsInterface) => {
         if (window.location.pathname) {
           const paths = decodeURIComponent(
             window.location.pathname.substring(1)
-          ).split("/", 4);
+          ).split("/");
 
-          if (paths.length === 4) {
-            setSelectedBike({
-              brand: paths[0],
-              type: paths[1],
-              model: paths[2],
-              year: paths[3],
-            });
-          }
+          setSelectedBike({
+            brand: paths[0],
+            type: paths[1],
+            model: paths[2],
+            year: paths[3],
+          });
         }
       });
   }, []);
@@ -73,11 +71,17 @@ const Header = (props: HeaderPropsInterface) => {
         .then((response) => response.json())
         .then((data) => {
           setTypesData(data);
+
+          window.document.title = data.brand;
+
+          window.history.replaceState(
+            {},
+            data.brand + " " + data.model,
+            "/" + selectedBike.brand + "/"
+          );
         });
     }
-  }, [selectedBike.brand]);
 
-  useEffect(() => {
     if (selectedBike.brand && selectedBike.type) {
       // Fetch models
       fetch(
@@ -90,11 +94,17 @@ const Header = (props: HeaderPropsInterface) => {
         .then((response) => response.json())
         .then((data) => {
           setModelsData(data);
+
+          window.document.title = data.brand;
+
+          window.history.replaceState(
+            {},
+            data.brand + " " + data.model,
+            "/" + selectedBike.brand + "/" + selectedBike.type + "/"
+          );
         });
     }
-  }, [selectedBike.brand, selectedBike.type]);
 
-  useEffect(() => {
     if (selectedBike.brand && selectedBike.type && selectedBike.model) {
       // Fetch years
       fetch(
@@ -109,11 +119,23 @@ const Header = (props: HeaderPropsInterface) => {
         .then((response) => response.json())
         .then((data) => {
           setYearsData(data);
+
+          window.document.title = data.brand + " " + data.model;
+
+          window.history.replaceState(
+            {},
+            data.brand + " " + data.model,
+            "/" +
+              selectedBike.brand +
+              "/" +
+              selectedBike.type +
+              "/" +
+              selectedBike.model +
+              "/"
+          );
         });
     }
-  }, [selectedBike.brand, selectedBike.type, selectedBike.model]);
 
-  useEffect(() => {
     if (
       selectedBike.brand &&
       selectedBike.type &&
