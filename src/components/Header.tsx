@@ -72,11 +72,11 @@ const Header = (props: HeaderPropsInterface) => {
         .then((data) => {
           setTypesData(data);
 
-          window.document.title = data.brand;
+          window.document.title = "Cykelhistoria.se - " + data.brand;
 
           window.history.replaceState(
             {},
-            data.brand + " " + data.model,
+            "Cykelhistoria.se - " + data.brand,
             "/" + selectedBike.brand + "/"
           );
         });
@@ -95,11 +95,12 @@ const Header = (props: HeaderPropsInterface) => {
         .then((data) => {
           setModelsData(data);
 
-          window.document.title = data.brand;
+          window.document.title =
+            "Cykelhistoria.se - " + data.brand + " " + data.type;
 
           window.history.replaceState(
             {},
-            data.brand + " " + data.model,
+            "Cykelhistoria.se - " + data.brand + " " + data.type,
             "/" + selectedBike.brand + "/" + selectedBike.type + "/"
           );
         });
@@ -120,11 +121,12 @@ const Header = (props: HeaderPropsInterface) => {
         .then((data) => {
           setYearsData(data);
 
-          window.document.title = data.brand + " " + data.model;
+          window.document.title =
+            "Cykelhistoria.se - " + data.brand + " " + data.model;
 
           window.history.replaceState(
             {},
-            data.brand + " " + data.model,
+            "Cykelhistoria.se - " + data.brand + " " + data.model,
             "/" +
               selectedBike.brand +
               "/" +
@@ -158,11 +160,21 @@ const Header = (props: HeaderPropsInterface) => {
         .then((data) => {
           setBikeData(data);
           window.document.title =
-            data.brand + " " + data.model + ", " + data.year;
+            "Cykelhistoria.se - " +
+            data.brand +
+            " " +
+            data.model +
+            ", " +
+            data.year;
 
           window.history.replaceState(
             {},
-            data.brand + " " + data.model + ", " + data.year,
+            "Cykelhistoria.se - " +
+              data.brand +
+              " " +
+              data.model +
+              ", " +
+              data.year,
             "/" +
               selectedBike.brand +
               "/" +
