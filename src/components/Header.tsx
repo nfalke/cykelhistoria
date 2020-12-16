@@ -40,6 +40,11 @@ const Header = (props: HeaderPropsInterface) => {
     year: "",
   });
 
+  const updateUrl = (title: string, path: string) => {
+    window.document.title = "Cykelhistoria.se - " + title;
+    window.history.replaceState({}, title, "/" + path + "/");
+  };
+
   // On page load
   useEffect(() => {
     // Fetch brands
@@ -50,9 +55,7 @@ const Header = (props: HeaderPropsInterface) => {
 
         // If url holds bike info
         if (window.location.pathname) {
-          const paths = decodeURIComponent(
-            window.location.pathname.substring(1)
-          ).split("/");
+          const paths = window.location.pathname.substring(1).split("/");
 
           setSelectedBike({
             brand: paths[0] || "",
@@ -64,82 +67,53 @@ const Header = (props: HeaderPropsInterface) => {
       });
   }, []);
 
+  // On selectedBike change
   useEffect(() => {
     if (selectedBike.brand) {
+      const path = selectedBike.brand;
+
       // Fetch types
-      fetch("/bikes/" + selectedBike.brand + "/types.json")
+      fetch("/bikes/" + path + "/types.json")
         .then((response) => response.json())
         .then((data) => {
           setTypesData(data);
 
           if (!selectedBike.type) {
-            window.document.title = "Cykelhistoria.se - " + data.brand;
-
-            window.history.replaceState(
-              {},
-              "Cykelhistoria.se - " + data.brand,
-              "/" + selectedBike.brand + "/"
-            );
+            const title = data.brand;
+            updateUrl(title, path);
           }
         });
     }
 
     if (selectedBike.brand && selectedBike.type) {
+      const path = selectedBike.brand + "/" + selectedBike.type;
+
       // Fetch models
-      fetch(
-        "/bikes/" +
-          selectedBike.brand +
-          "/" +
-          selectedBike.type +
-          "/models.json"
-      )
+      fetch("/bikes/" + path + "/models.json")
         .then((response) => response.json())
         .then((data) => {
           setModelsData(data);
 
           if (!selectedBike.model) {
-            window.document.title =
-              "Cykelhistoria.se - " + data.brand + " " + data.type;
-
-            window.history.replaceState(
-              {},
-              "Cykelhistoria.se - " + data.brand + " " + data.type,
-              "/" + selectedBike.brand + "/" + selectedBike.type + "/"
-            );
+            const title = data.brand + " " + data.type;
+            updateUrl(title, path);
           }
         });
     }
 
     if (selectedBike.brand && selectedBike.type && selectedBike.model) {
+      const path =
+        selectedBike.brand + "/" + selectedBike.type + "/" + selectedBike.model;
+
       // Fetch years
-      fetch(
-        "/bikes/" +
-          selectedBike.brand +
-          "/" +
-          selectedBike.type +
-          "/" +
-          selectedBike.model +
-          "/years.json"
-      )
+      fetch("/bikes/" + path + "/years.json")
         .then((response) => response.json())
         .then((data) => {
           setYearsData(data);
 
           if (!selectedBike.year) {
-            window.document.title =
-              "Cykelhistoria.se - " + data.brand + " " + data.model;
-
-            window.history.replaceState(
-              {},
-              "Cykelhistoria.se - " + data.brand + " " + data.model,
-              "/" +
-                selectedBike.brand +
-                "/" +
-                selectedBike.type +
-                "/" +
-                selectedBike.model +
-                "/"
-            );
+            const title = data.brand + " " + data.model;
+            updateUrl(title, path);
           }
         });
     }
@@ -150,47 +124,22 @@ const Header = (props: HeaderPropsInterface) => {
       selectedBike.model &&
       selectedBike.year
     ) {
+      const path =
+        selectedBike.brand +
+        "/" +
+        selectedBike.type +
+        "/" +
+        selectedBike.model +
+        "/" +
+        selectedBike.year;
+
       // Fetch bike
-      fetch(
-        "/bikes/" +
-          selectedBike.brand +
-          "/" +
-          selectedBike.type +
-          "/" +
-          selectedBike.model +
-          "/" +
-          selectedBike.year +
-          "/bike.json"
-      )
+      fetch("/bikes/" + path + "/bike.json")
         .then((response) => response.json())
         .then((data) => {
           setBikeData(data);
-          window.document.title =
-            "Cykelhistoria.se - " +
-            data.brand +
-            " " +
-            data.model +
-            ", " +
-            data.year;
-
-          window.history.replaceState(
-            {},
-            "Cykelhistoria.se - " +
-              data.brand +
-              " " +
-              data.model +
-              ", " +
-              data.year,
-            "/" +
-              selectedBike.brand +
-              "/" +
-              selectedBike.type +
-              "/" +
-              selectedBike.model +
-              "/" +
-              selectedBike.year +
-              "/"
-          );
+          const title = data.brand + " " + data.model + ", " + data.year;
+          updateUrl(title, path);
         });
     }
   }, [selectedBike]);
@@ -199,7 +148,7 @@ const Header = (props: HeaderPropsInterface) => {
     if (bikeData && bikeData !== props.bikeData) {
       props.setBikeData(bikeData);
     }
-  }, [bikeData, props.setBikeData, props]);
+  }, [bikeData, props]);
 
   return (
     <StyledHeader>
