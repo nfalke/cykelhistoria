@@ -55,10 +55,10 @@ const Header = (props: HeaderPropsInterface) => {
           ).split("/");
 
           setSelectedBike({
-            brand: paths[0],
-            type: paths[1],
-            model: paths[2],
-            year: paths[3],
+            brand: paths[0] || "",
+            type: paths[1] || "",
+            model: paths[2] || "",
+            year: paths[3] || "",
           });
         }
       });
