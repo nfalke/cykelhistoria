@@ -72,13 +72,15 @@ const Header = (props: HeaderPropsInterface) => {
         .then((data) => {
           setTypesData(data);
 
-          window.document.title = "Cykelhistoria.se - " + data.brand;
+          if (!selectedBike.type) {
+            window.document.title = "Cykelhistoria.se - " + data.brand;
 
-          window.history.replaceState(
-            {},
-            "Cykelhistoria.se - " + data.brand,
-            "/" + selectedBike.brand + "/"
-          );
+            window.history.replaceState(
+              {},
+              "Cykelhistoria.se - " + data.brand,
+              "/" + selectedBike.brand + "/"
+            );
+          }
         });
     }
 
@@ -95,14 +97,16 @@ const Header = (props: HeaderPropsInterface) => {
         .then((data) => {
           setModelsData(data);
 
-          window.document.title =
-            "Cykelhistoria.se - " + data.brand + " " + data.type;
+          if (!selectedBike.model) {
+            window.document.title =
+              "Cykelhistoria.se - " + data.brand + " " + data.type;
 
-          window.history.replaceState(
-            {},
-            "Cykelhistoria.se - " + data.brand + " " + data.type,
-            "/" + selectedBike.brand + "/" + selectedBike.type + "/"
-          );
+            window.history.replaceState(
+              {},
+              "Cykelhistoria.se - " + data.brand + " " + data.type,
+              "/" + selectedBike.brand + "/" + selectedBike.type + "/"
+            );
+          }
         });
     }
 
@@ -121,20 +125,22 @@ const Header = (props: HeaderPropsInterface) => {
         .then((data) => {
           setYearsData(data);
 
-          window.document.title =
-            "Cykelhistoria.se - " + data.brand + " " + data.model;
+          if (!selectedBike.year) {
+            window.document.title =
+              "Cykelhistoria.se - " + data.brand + " " + data.model;
 
-          window.history.replaceState(
-            {},
-            "Cykelhistoria.se - " + data.brand + " " + data.model,
-            "/" +
-              selectedBike.brand +
+            window.history.replaceState(
+              {},
+              "Cykelhistoria.se - " + data.brand + " " + data.model,
               "/" +
-              selectedBike.type +
-              "/" +
-              selectedBike.model +
-              "/"
-          );
+                selectedBike.brand +
+                "/" +
+                selectedBike.type +
+                "/" +
+                selectedBike.model +
+                "/"
+            );
+          }
         });
     }
 
