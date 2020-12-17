@@ -75,8 +75,9 @@ const Header = (props: HeaderPropsInterface) => {
   // On selectedBike change
   useEffect(() => {
     if (selectedBike.brand) {
-      setIsLoading(true);
       const path = selectedBike.brand;
+
+      setIsLoading(true);
 
       // Fetch types
       fetch("/bikes/" + path + "/types.json")
@@ -110,6 +111,8 @@ const Header = (props: HeaderPropsInterface) => {
     if (selectedBike.brand && selectedBike.type && selectedBike.model) {
       const path =
         selectedBike.brand + "/" + selectedBike.type + "/" + selectedBike.model;
+
+      setIsLoading(false);
 
       // Fetch years
       fetch("/bikes/" + path + "/years.json")
@@ -254,14 +257,10 @@ const Header = (props: HeaderPropsInterface) => {
           </StyledSelect>
         </Fieldset>
       )}
-      {isLoading && <Loader isLoading={isLoading} />}
+      {isLoading && <Loader />}
     </StyledHeader>
   );
 };
-
-interface LoaderPropsIterface {
-  isLoading: boolean;
-}
 
 const StyledHeader = styled.header`
   display: flex;
@@ -294,18 +293,14 @@ const StyledSelect = styled.select`
 `;
 
 const Loader = styled.div`
-  display: inline-block;
   width: 1.5rem;
   height: 1.5rem;
-  border: 0.2rem solid rgba(255, 255, 255, 0.3);
+  border: 0.2rem solid #444;
   border-radius: 50%;
   border-color: #444;
   border-left-color: transparent;
-  animation: spin 0.75s linear infinite;
   margin-left: 0.5rem;
-  transition: opacity 0.5s ease;
-  opacity: 0;
-  opacity: ${(props: LoaderPropsIterface) => props.isLoading && 1};
+  animation: spin 0.75s linear infinite;
 
   @keyframes spin {
     to {
