@@ -28,6 +28,7 @@ interface bikeDataInterface {
 }
 
 const Header = (props: HeaderPropsInterface) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [brandsData, setBrandsData] = useState(null);
   const [typesData, setTypesData] = useState(null);
   const [modelsData, setModelsData] = useState(null);
@@ -43,15 +44,19 @@ const Header = (props: HeaderPropsInterface) => {
   const updateUrl = (title: string, path: string) => {
     window.document.title = "Cykelhistoria.se - " + title;
     window.history.replaceState({}, title, "/" + path + "/");
+    setIsLoading(false);
   };
 
   // On page load
   useEffect(() => {
+    setIsLoading(true);
+
     // Fetch brands
     fetch("/bikes/brands.json")
       .then((response) => response.json())
       .then((data) => {
         setBrandsData(data);
+        setIsLoading(false);
 
         // If url holds bike info
         if (window.location.pathname) {
@@ -70,6 +75,7 @@ const Header = (props: HeaderPropsInterface) => {
   // On selectedBike change
   useEffect(() => {
     if (selectedBike.brand) {
+      setIsLoading(true);
       const path = selectedBike.brand;
 
       // Fetch types
@@ -248,9 +254,14 @@ const Header = (props: HeaderPropsInterface) => {
           </StyledSelect>
         </Fieldset>
       )}
+      {isLoading && <Loader isLoading={isLoading} />}
     </StyledHeader>
   );
 };
+
+interface LoaderPropsIterface {
+  isLoading: boolean;
+}
 
 const StyledHeader = styled.header`
   display: flex;
@@ -280,6 +291,27 @@ const StyledLabel = styled.label`
 
 const StyledSelect = styled.select`
   font-size: 1rem;
+`;
+
+const Loader = styled.div`
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 0.2rem solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-color: #444;
+  border-left-color: transparent;
+  animation: spin 0.75s linear infinite;
+  margin-left: 0.5rem;
+  transition: opacity 0.5s ease;
+  opacity: 0;
+  opacity: ${(props: LoaderPropsIterface) => props.isLoading && 1};
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
 `;
 
 export { Header, bikeDataInterface };
