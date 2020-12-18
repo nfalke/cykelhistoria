@@ -9,8 +9,8 @@ const App = () => {
   return (
     <>
       <Header bikeData={bikeData} setBikeData={(data) => setBikeData(data)} />
-      <Main bikeData={bikeData} />
-      <Footer />
+      {bikeData && <Main bikeData={bikeData} />}
+      {bikeData && <Footer />}
     </>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import type {} from "styled-components/cssprop";
 
 interface HeaderPropsInterface {
   bikeData: bikeDataInterface;
@@ -140,7 +141,6 @@ const Header = (props: HeaderPropsInterface) => {
         selectedBike.model +
         "/" +
         selectedBike.year;
-      setIsLoading(true);
 
       // Fetch bike
       fetch("/bikes/" + path + "/bike.json")
@@ -150,7 +150,6 @@ const Header = (props: HeaderPropsInterface) => {
           const title = data.brand + " " + data.model + ", " + data.year;
           window.document.title = "Cykelhistoria.se - " + title;
           window.history.replaceState({}, title, "/" + path + "/");
-          setIsLoading(false);
         });
     }
   }, [selectedBike]);
@@ -187,7 +186,6 @@ const Header = (props: HeaderPropsInterface) => {
           </StyledSelect>
         </Fieldset>
       )}
-
       {typesData && selectedBike.brand && (
         <Fieldset>
           <StyledLabel htmlFor="selectType">Typ:</StyledLabel>
@@ -212,7 +210,6 @@ const Header = (props: HeaderPropsInterface) => {
           </StyledSelect>
         </Fieldset>
       )}
-
       {modelsData && selectedBike.type && (
         <Fieldset>
           <StyledLabel htmlFor="selectModel">Modell:</StyledLabel>
@@ -236,7 +233,6 @@ const Header = (props: HeaderPropsInterface) => {
           </StyledSelect>
         </Fieldset>
       )}
-
       {yearsData && selectedBike.model && (
         <Fieldset>
           <StyledLabel htmlFor="selectYear">År:</StyledLabel>
@@ -268,22 +264,23 @@ const StyledHeader = styled.header`
   display: flex;
   padding: 0.5rem;
   flex-wrap: wrap;
+  background: #fff;
+  justify-content: center;
+  align-items: center;
 
   @media (min-width: 500px) {
     padding: 1rem;
-    justify-content: center;
-    align-items: center;
   }
 `;
 
 const Fieldset = styled.header`
   padding: 0.5rem;
+  display: flex;
 `;
 
 const StyledLabel = styled.label`
   margin-right: 0.3rem;
   letter-spacing: 1px;
-  display: block;
 
   @media (min-width: 700px) {
     display: inline;
@@ -292,6 +289,7 @@ const StyledLabel = styled.label`
 
 const StyledSelect = styled.select`
   font-size: 1rem;
+  flex-grow: 1;
 `;
 
 const Loader = styled.div`
