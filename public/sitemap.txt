@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.cykelhistoria.se/crescent/mountainbike/2021-bjarke/1997/</loc>
+  </url>
+  <url>
+    <loc>https://www.cykelhistoria.se/crescent/mountainbike/2064-freke/1997/</loc>
+  </url>
+  <url>
+    <loc>https://www.cykelhistoria.se/crescent/trekking-herr/2301-stx-rc/1997/</loc>
+  </url>
+</urlset>

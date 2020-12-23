@@ -44,7 +44,7 @@ const StyledMain = styled.main`
   flex-direction: column;
   align-items: center;
   flex-grow: 1;
-  background: #f5f5f5;
+  background: #f2f2f2;
 `;
 
 const StyledContent = styled.div`
