@@ -80,7 +80,7 @@ const Header = (props: HeaderPropsInterface) => {
         .then((data) => {
           const title = data.brand;
           setTypesData(data);
-          window.document.title = "Cykelhistoria.se - " + title;
+          window.document.title = title;
           window.history.replaceState({}, title, "/" + path + "/");
           setIsLoading(false);
         });
@@ -99,7 +99,7 @@ const Header = (props: HeaderPropsInterface) => {
         .then((data) => {
           const title = data.brand + " " + data.type;
           setModelsData(data);
-          window.document.title = "Cykelhistoria.se - " + title;
+          window.document.title = title;
           window.history.replaceState({}, title, "/" + path + "/");
           setIsLoading(false);
         });
@@ -119,7 +119,7 @@ const Header = (props: HeaderPropsInterface) => {
         .then((data) => {
           const title = data.brand + " " + data.model;
           setYearsData(data);
-          window.document.title = "Cykelhistoria.se - " + title;
+          window.document.title = title;
           window.history.replaceState({}, title, "/" + path + "/");
           setIsLoading(false);
         });
@@ -149,7 +149,7 @@ const Header = (props: HeaderPropsInterface) => {
         .then((data) => {
           setBikeData(data);
           const title = data.brand + " " + data.model + ", " + data.year;
-          window.document.title = "Cykelhistoria.se - " + title;
+          window.document.title = title;
           window.history.replaceState({}, title, "/" + path + "/");
 
           // Add virtual pageview to analytics
