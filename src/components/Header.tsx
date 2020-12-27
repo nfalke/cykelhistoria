@@ -150,6 +150,11 @@ const Header = (props: HeaderPropsInterface) => {
           const title = data.brand + " " + data.model + ", " + data.year;
           window.document.title = "Cykelhistoria.se - " + title;
           window.history.replaceState({}, title, "/" + path + "/");
+
+          // Add virtual pageview to analytics
+          (window as any).gtag("config", "G-2F6CXND2S2", {
+            page_path: "/" + path + "/",
+          });
         });
     }
   }, [selectedBike]);
