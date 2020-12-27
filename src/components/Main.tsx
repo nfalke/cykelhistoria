@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { bikeDataInterface } from "./Header";
+import { Helmet } from "react-helmet";
 
 interface MainPropsInterface {
   bikeData: bikeDataInterface;
@@ -35,6 +36,10 @@ const Main = (props: MainPropsInterface) => {
           </>
         )}
       </StyledContent>
+
+      <Helmet>
+        <meta name="description" content={props.bikeData?.description} />
+      </Helmet>
     </StyledMain>
   );
 };
