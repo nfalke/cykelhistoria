@@ -270,7 +270,13 @@ const Header = (props: HeaderPropsInterface) => {
       <Helmet>
         <meta
           name="description"
-          content={selectedBike.year && bikeData ? bikeData.description : ""}
+          content={
+            selectedBike.year && bikeData
+              ? bikeData.description
+                  .substring(0, 160)
+                  .replace(/[\W]*\S+[\W]*$/, "…")
+              : ""
+          }
         />
       </Helmet>
     </>
