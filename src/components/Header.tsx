@@ -71,17 +71,13 @@ const Header = (props: HeaderPropsInterface) => {
   // On select brand change
   useEffect(() => {
     if (selectedBike.brand) {
-      const path = selectedBike.brand;
       setIsLoading(true);
 
       // Fetch types
       fetch("/bikes/" + selectedBike.brand + "/types.json")
         .then((response) => response.json())
         .then((data) => {
-          const title = data.brand;
           setTypesData(data);
-          window.document.title = title;
-          window.history.replaceState({}, title, "/" + path + "/");
           setIsLoading(false);
         });
     }
@@ -90,17 +86,19 @@ const Header = (props: HeaderPropsInterface) => {
   // On select type change
   useEffect(() => {
     if (selectedBike.type) {
-      const path = selectedBike.brand + "/" + selectedBike.type;
       setIsLoading(true);
 
       // Fetch models
-      fetch("/bikes/" + path + "/models.json")
+      fetch(
+        "/bikes/" +
+          selectedBike.brand +
+          "/" +
+          selectedBike.type +
+          "/models.json"
+      )
         .then((response) => response.json())
         .then((data) => {
-          const title = data.brand + " " + data.type;
           setModelsData(data);
-          window.document.title = title;
-          window.history.replaceState({}, title, "/" + path + "/");
           setIsLoading(false);
         });
     }
@@ -109,18 +107,21 @@ const Header = (props: HeaderPropsInterface) => {
   // On select model change
   useEffect(() => {
     if (selectedBike.brand && selectedBike.type && selectedBike.model) {
-      const path =
-        selectedBike.brand + "/" + selectedBike.type + "/" + selectedBike.model;
       setIsLoading(true);
 
       // Fetch years
-      fetch("/bikes/" + path + "/years.json")
+      fetch(
+        "/bikes/" +
+          selectedBike.brand +
+          "/" +
+          selectedBike.type +
+          "/" +
+          selectedBike.model +
+          "/years.json"
+      )
         .then((response) => response.json())
         .then((data) => {
-          const title = data.brand + " " + data.model;
           setYearsData(data);
-          window.document.title = title;
-          window.history.replaceState({}, title, "/" + path + "/");
           setIsLoading(false);
         });
     }
@@ -135,13 +136,15 @@ const Header = (props: HeaderPropsInterface) => {
       selectedBike.year
     ) {
       const path =
+        "/" +
         selectedBike.brand +
         "/" +
         selectedBike.type +
         "/" +
         selectedBike.model +
         "/" +
-        selectedBike.year;
+        selectedBike.year +
+        "/";
 
       // Fetch bike
       fetch("/bikes/" + path + "/bike.json")
@@ -150,11 +153,14 @@ const Header = (props: HeaderPropsInterface) => {
           setBikeData(data);
           const title = data.brand + " " + data.model + ", " + data.year;
           window.document.title = title;
-          window.history.replaceState({}, title, "/" + path + "/");
+
+          if (window.location.pathname !== path) {
+            window.history.replaceState({}, title, path);
+          }
 
           // Add virtual pageview to analytics
           (window as any).gtag("config", "G-2F6CXND2S2", {
-            page_path: "/" + path + "/",
+            page_path: path,
           });
         });
     }
