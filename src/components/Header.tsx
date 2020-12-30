@@ -272,9 +272,7 @@ const Header = (props: HeaderPropsInterface) => {
           name="description"
           content={
             selectedBike.year && bikeData
-              ? bikeData.description
-                  .substring(0, 160)
-                  .replace(/[\W]*\S+[\W]*$/, "…")
+              ? bikeData.description.substring(0, 160).replace(/\S+[\W]*$/, "…")
               : ""
           }
         />
