@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url>
+  <url>
     <loc>https://www.cykelhistoria.se/</loc>
+    <lastmod>2020-12-30</lastmod>
+  </url>
+  <url>
+    <loc>https://www.cykelhistoria.se/crescent/mountainbike/2000-mjolner/1997/</loc>
+    <lastmod>2020-12-30</lastmod>
+  </url>
+  <url>
+    <loc>https://www.cykelhistoria.se/crescent/mountainbike/2001-freke/1996/</loc>
+    <lastmod>2020-12-30</lastmod>
+  </url>
+  <url>
+    <loc>https://www.cykelhistoria.se/crescent/mountainbike/2004-rimfaxe/1996/</loc>
+    <lastmod>2020-12-30</lastmod>
+  </url>
+  <url>
+    <loc>https://www.cykelhistoria.se/crescent/mountainbike/2004-rimfaxe/1997/</loc>
+    <lastmod>2020-12-30</lastmod>
+  </url>
+  <url>
+    <loc>https://www.cykelhistoria.se/crescent/mountainbike/2021-bjarke/1996/</loc>
     <lastmod>2020-12-30</lastmod>
   </url>
   <url>
@@ -9,7 +29,55 @@
     <lastmod>2020-12-30</lastmod>
   </url>
   <url>
+    <loc>https://www.cykelhistoria.se/crescent/mountainbike/2024-lodur/1997/</loc>
+    <lastmod>2020-12-30</lastmod>
+  </url>
+  <url>
+    <loc>https://www.cykelhistoria.se/crescent/mountainbike/2024-lodur/1996/</loc>
+    <lastmod>2020-12-30</lastmod>
+  </url>
+  <url>
+    <loc>https://www.cykelhistoria.se/crescent/mountainbike/2041-oden/1997/</loc>
+    <lastmod>2020-12-30</lastmod>
+  </url>
+  <url>
+    <loc>https://www.cykelhistoria.se/crescent/mountainbike/2041-oden/1996/</loc>
+    <lastmod>2020-12-30</lastmod>
+  </url>
+  <url>
+    <loc>https://www.cykelhistoria.se/crescent/mountainbike/2044-ultima/1997/</loc>
+    <lastmod>2020-12-30</lastmod>
+  </url>
+  <url>
+    <loc>https://www.cykelhistoria.se/crescent/mountainbike/2044-ultima/1996/</loc>
+    <lastmod>2020-12-30</lastmod>
+  </url>
+  <url>
     <loc>https://www.cykelhistoria.se/crescent/mountainbike/2064-freke/1997/</loc>
+    <lastmod>2020-12-30</lastmod>
+  </url>
+  <url>
+    <loc>https://www.cykelhistoria.se/crescent/mountainbike/2084-gram/1997/</loc>
+    <lastmod>2020-12-30</lastmod>
+  </url>
+  <url>
+    <loc>https://www.cykelhistoria.se/crescent/mountainbike/2084-gram/1996/</loc>
+    <lastmod>2020-12-30</lastmod>
+  </url>
+  <url>
+    <loc>https://www.cykelhistoria.se/crescent/sport-racer/2320/1997/</loc>
+    <lastmod>2020-12-30</lastmod>
+  </url>
+  <url>
+    <loc>https://www.cykelhistoria.se/crescent/sport-racer/2318/1997/</loc>
+    <lastmod>2020-12-30</lastmod>
+  </url>
+  <url>
+    <loc>https://www.cykelhistoria.se/crescent/sport-racer/2316/1997/</loc>
+    <lastmod>2020-12-30</lastmod>
+  </url>
+  <url>
+    <loc>https://www.cykelhistoria.se/crescent/trekking-dam/2311-stx-rc/1997/</loc>
     <lastmod>2020-12-30</lastmod>
   </url>
   <url>
