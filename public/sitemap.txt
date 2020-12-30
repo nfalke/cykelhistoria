@@ -84,4 +84,8 @@
     <loc>https://www.cykelhistoria.se/crescent/trekking-herr/2301-stx-rc/1997/</loc>
     <lastmod>2020-12-30</lastmod>
   </url>
+  <url>
+    <loc>https://www.cykelhistoria.se/crescent/trekking-herr/2301-stx-rc/1996/</loc>
+    <lastmod>2020-12-30</lastmod>
+  </url>
 </urlset>
