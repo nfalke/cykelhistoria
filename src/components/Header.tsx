@@ -42,10 +42,27 @@ const Header = (props: HeaderPropsInterface) => {
     model: "",
     year: "",
   });
+  const [hideHeader, setHideHeader] = useState(false);
 
   // On page load
   useEffect(() => {
     setIsLoading(true);
+
+    // If url holds bike info
+    if (window.location.pathname) {
+      const paths = window.location.pathname.substring(1).split("/");
+
+      if (paths.length === 5) {
+        setHideHeader(true);
+      }
+
+      setSelectedBike({
+        brand: paths[0] || "",
+        type: paths[1] || "",
+        model: paths[2] || "",
+        year: paths[3] || "",
+      });
+    }
 
     // Fetch brands
     fetch("/bikes/brands.json")
@@ -53,18 +70,6 @@ const Header = (props: HeaderPropsInterface) => {
       .then((data) => {
         setBrandsData(data);
         setIsLoading(false);
-
-        // If url holds bike info
-        if (window.location.pathname) {
-          const paths = window.location.pathname.substring(1).split("/");
-
-          setSelectedBike({
-            brand: paths[0] || "",
-            type: paths[1] || "",
-            model: paths[2] || "",
-            year: paths[3] || "",
-          });
-        }
       });
   }, []);
 
@@ -162,6 +167,8 @@ const Header = (props: HeaderPropsInterface) => {
           (window as any).gtag("config", "G-2F6CXND2S2", {
             page_path: path,
           });
+
+          setHideHeader(false);
         });
     }
   }, [selectedBike]);
@@ -174,105 +181,107 @@ const Header = (props: HeaderPropsInterface) => {
 
   return (
     <>
-      <StyledHeader>
-        {!bikeData && <p>Välj cykel här ⤵</p>}
-        <StyledHeaderContainer>
-          {brandsData && (
-            <Fieldset>
-              <StyledLabel htmlFor="selectBrand">Märke:</StyledLabel>
-              <StyledSelect
-                id="selectBrand"
-                value={selectedBike.brand}
-                onChange={(event) =>
-                  setSelectedBike({
-                    brand: event.target.value,
-                    type: "",
-                    model: "",
-                    year: "",
-                  })
-                }
-              >
-                <option disabled></option>
-                {brandsData.brands.map((brand) => (
-                  <option key={brand.slug} value={brand.slug}>
-                    {brand.name}
-                  </option>
-                ))}
-              </StyledSelect>
-            </Fieldset>
-          )}
-          {typesData && selectedBike.brand && (
-            <Fieldset>
-              <StyledLabel htmlFor="selectType">Typ:</StyledLabel>
-              <StyledSelect
-                id="selectType"
-                value={selectedBike.type}
-                onChange={(event) =>
-                  setSelectedBike({
-                    ...selectedBike,
-                    type: event.target.value,
-                    model: "",
-                    year: "",
-                  })
-                }
-              >
-                <option disabled></option>
-                {typesData.types.map((type) => (
-                  <option key={type.slug} value={type.slug}>
-                    {type.name}
-                  </option>
-                ))}
-              </StyledSelect>
-            </Fieldset>
-          )}
-          {modelsData && selectedBike.type && (
-            <Fieldset>
-              <StyledLabel htmlFor="selectModel">Modell:</StyledLabel>
-              <StyledSelect
-                id="selectModel"
-                value={selectedBike.model}
-                onChange={(event) =>
-                  setSelectedBike({
-                    ...selectedBike,
-                    model: event.target.value,
-                    year: "",
-                  })
-                }
-              >
-                <option disabled></option>
-                {modelsData.models.map((model) => (
-                  <option key={model.slug} value={model.slug}>
-                    {model.name}
-                  </option>
-                ))}
-              </StyledSelect>
-            </Fieldset>
-          )}
-          {yearsData && selectedBike.model && (
-            <Fieldset>
-              <StyledLabel htmlFor="selectYear">År:</StyledLabel>
-              <StyledSelect
-                id="selectYear"
-                value={selectedBike.year}
-                onChange={(event) =>
-                  setSelectedBike({
-                    ...selectedBike,
-                    year: event.target.value,
-                  })
-                }
-              >
-                <option disabled></option>
-                {yearsData.years.map((year) => (
-                  <option key={year.name} value={year.name}>
-                    {year.name}
-                  </option>
-                ))}
-              </StyledSelect>
-            </Fieldset>
-          )}
-          {isLoading && <Loader />}
-        </StyledHeaderContainer>
-      </StyledHeader>
+      {!hideHeader && (
+        <StyledHeader>
+          {!bikeData && <p>Välj cykel här ⤵</p>}
+          <StyledHeaderContainer>
+            {brandsData && (
+              <Fieldset>
+                <StyledLabel htmlFor="selectBrand">Märke:</StyledLabel>
+                <StyledSelect
+                  id="selectBrand"
+                  value={selectedBike.brand}
+                  onChange={(event) =>
+                    setSelectedBike({
+                      brand: event.target.value,
+                      type: "",
+                      model: "",
+                      year: "",
+                    })
+                  }
+                >
+                  <option disabled></option>
+                  {brandsData.brands.map((brand) => (
+                    <option key={brand.slug} value={brand.slug}>
+                      {brand.name}
+                    </option>
+                  ))}
+                </StyledSelect>
+              </Fieldset>
+            )}
+            {typesData && selectedBike.brand && (
+              <Fieldset>
+                <StyledLabel htmlFor="selectType">Typ:</StyledLabel>
+                <StyledSelect
+                  id="selectType"
+                  value={selectedBike.type}
+                  onChange={(event) =>
+                    setSelectedBike({
+                      ...selectedBike,
+                      type: event.target.value,
+                      model: "",
+                      year: "",
+                    })
+                  }
+                >
+                  <option disabled></option>
+                  {typesData.types.map((type) => (
+                    <option key={type.slug} value={type.slug}>
+                      {type.name}
+                    </option>
+                  ))}
+                </StyledSelect>
+              </Fieldset>
+            )}
+            {modelsData && selectedBike.type && (
+              <Fieldset>
+                <StyledLabel htmlFor="selectModel">Modell:</StyledLabel>
+                <StyledSelect
+                  id="selectModel"
+                  value={selectedBike.model}
+                  onChange={(event) =>
+                    setSelectedBike({
+                      ...selectedBike,
+                      model: event.target.value,
+                      year: "",
+                    })
+                  }
+                >
+                  <option disabled></option>
+                  {modelsData.models.map((model) => (
+                    <option key={model.slug} value={model.slug}>
+                      {model.name}
+                    </option>
+                  ))}
+                </StyledSelect>
+              </Fieldset>
+            )}
+            {yearsData && selectedBike.model && (
+              <Fieldset>
+                <StyledLabel htmlFor="selectYear">År:</StyledLabel>
+                <StyledSelect
+                  id="selectYear"
+                  value={selectedBike.year}
+                  onChange={(event) =>
+                    setSelectedBike({
+                      ...selectedBike,
+                      year: event.target.value,
+                    })
+                  }
+                >
+                  <option disabled></option>
+                  {yearsData.years.map((year) => (
+                    <option key={year.name} value={year.name}>
+                      {year.name}
+                    </option>
+                  ))}
+                </StyledSelect>
+              </Fieldset>
+            )}
+            {isLoading && <Loader />}
+          </StyledHeaderContainer>
+        </StyledHeader>
+      )}
       <Helmet>
         <meta
           name="description"
