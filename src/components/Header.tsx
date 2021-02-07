@@ -21,6 +21,7 @@ interface bikeDataInterface {
   model: string;
   year: string;
   description: string;
+  facts?: string;
   images: [
     {
       filename: string;
@@ -306,14 +307,14 @@ const StyledHeader = styled.header`
   }
 `;
 
-const StyledHeaderContainer = styled.header`
+const StyledHeaderContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 `;
 
-const Fieldset = styled.header`
+const Fieldset = styled.div`
   padding: 0.5rem;
   display: flex;
 `;

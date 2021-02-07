@@ -19,7 +19,11 @@ const Main = (props: MainPropsInterface) => {
             ) : (
               ""
             )}
-
+            {props.bikeData?.facts ? (
+              <Facts>{props.bikeData?.facts}</Facts>
+            ) : (
+              ""
+            )}
             {props.bikeData.images.map((image) => (
               <Figure key={image.filename}>
                 <Image
@@ -74,6 +78,15 @@ const Heading = styled.h1`
 `;
 
 const Preamble = styled.p`
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+`;
+
+const Facts = styled.p`
   position: absolute;
   left: -10000px;
   top: auto;
