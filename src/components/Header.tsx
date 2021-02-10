@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import type {} from "styled-components/cssprop";
-import { Helmet } from "react-helmet";
 
 interface HeaderPropsInterface {
   bikeData: bikeDataInterface;
@@ -158,11 +157,27 @@ const Header = (props: HeaderPropsInterface) => {
         .then((data) => {
           setBikeData(data);
           const title = data.brand + " " + data.model + ", " + data.year;
+          const metaDescription = data.description
+            .substring(0, 160)
+            .replace(/\S+[\W]*$/, "…");
+          console.log(
+            window.location.protocol + window.location.hostname + path
+          );
           window.document.title = title;
+          document
+            .querySelector("link[rel='canonical']")
+            .setAttribute(
+              "href",
+              window.location.protocol + window.location.hostname + path
+            );
 
           if (window.location.pathname !== path) {
             window.history.pushState({}, title, path);
           }
+
+          document
+            .querySelector("meta[name='description']")
+            .setAttribute("content", metaDescription);
 
           // Add virtual pageview to analytics
           (window as any).gtag("config", "G-2F6CXND2S2", {
@@ -283,16 +298,6 @@ const Header = (props: HeaderPropsInterface) => {
           </StyledHeaderContainer>
         </StyledHeader>
       )}
-      <Helmet>
-        <meta
-          name="description"
-          content={
-            selectedBike.year && bikeData
-              ? bikeData.description.substring(0, 160).replace(/\S+[\W]*$/, "…")
-              : ""
-          }
-        />
-      </Helmet>
     </>
   );
 };
