@@ -164,10 +164,7 @@ const Header = (props: HeaderPropsInterface) => {
           window.document.title = title;
           document.head
             .querySelector("link[rel='canonical']")
-            .setAttribute(
-              "href",
-              window.location.protocol + window.location.hostname + path
-            );
+            .setAttribute("href", "https://www.cykelhistoria.se" + path);
 
           if (window.location.pathname !== path) {
             window.history.pushState({}, title, path);
