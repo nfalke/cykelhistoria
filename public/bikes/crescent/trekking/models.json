@@ -1,0 +1,14 @@
+{
+  "brand": "Crescent",
+  "type": "Trekking",
+  "models": [
+    {
+      "name": "2301 (STX-RC)",
+      "slug": "2301-stx-rc"
+    },
+    {
+      "name": "2311 (STX-RC)",
+      "slug": "2311-stx-rc"
+    }
+  ]
+}

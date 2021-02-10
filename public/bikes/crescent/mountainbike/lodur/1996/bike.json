@@ -1,0 +1,17 @@
+{
+  "brand": "Crescent",
+  "type": "Mountainbike",
+  "model": "Lodur",
+  "year": "1996",
+  "description": "Tävlings- och träningsmodell med vridstyv oversize ram i aluminium. En kraftfull och muskulös MTB med mycket fina egenskaper. Den sista i raden av våra 24-växlars MTB. Nivån är Shimano Deore LX. Odämpad oversize framgaffel. Genomgående utrustning på slitstark tävlingsnivå. Gjord för att plågas.",
+  "images": [
+    {
+      "description": "Cykelpraktikan 1996",
+      "filename": "crescent-lodur-1996-01.jpg"
+    },
+    {
+      "description": "Cykelpraktikan 1996",
+      "filename": "crescent-lodur-1996-02.jpg"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "brand": "Crescent",
+  "type": "Mountainbike",
+  "model": "Oden",
+  "year": "1996",
+  "description": "Motions- och träningsvarianten av värstingen 2044 Ultima. Något mer upprätt sittställning. 21-växlat Shimano Acera X-paket med ny lättmanövrerad mekanik. Duotrack fjädrande framgaffel. Utrustningsnivå med stora möjligheter för begränsade pengar. Kraftfull, slitstark och väl balanserad. Tioga Psycho tävlingsdäck.",
+  "images": [
+    {
+      "description": "Cykelpraktikan 1996",
+      "filename": "crescent-oden-1996-01.jpg"
+    },
+    {
+      "description": "Cykelpraktikan 1996",
+      "filename": "crescent-oden-1996-02.jpg"
+    }
+  ]
+}

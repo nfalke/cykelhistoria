@@ -3,48 +3,36 @@
   "type": "Mountainbike",
   "models": [
     {
-      "name": "2084 Gram",
-      "slug": "2084-gram"
+      "name": "Bjarke",
+      "slug": "bjarke"
     },
     {
-      "name": "2074 Oden",
-      "slug": "2074-oden"
+      "name": "Freke",
+      "slug": "freke"
     },
     {
-      "name": "2064 Freke",
-      "slug": "2064-freke"
+      "name": "Gram",
+      "slug": "gram"
     },
     {
-      "name": "2044 Ultima",
-      "slug": "2044-ultima"
+      "name": "Lodur",
+      "slug": "lodur"
     },
     {
-      "name": "2041 Oden",
-      "slug": "2041-oden"
+      "name": "Mjölner",
+      "slug": "mjölner"
     },
     {
-      "name": "2024 Lodur",
-      "slug": "2024-lodur"
+      "name": "Oden",
+      "slug": "oden"
     },
     {
-      "name": "2021 Bjarke",
-      "slug": "2021-bjarke"
+      "name": "Rimfaxe",
+      "slug": "rimfaxe"
     },
     {
-      "name": "2014 Ultima",
-      "slug": "2014-ultima"
-    },
-    {
-      "name": "2004 Rimfaxe",
-      "slug": "2004-rimfaxe"
-    },
-    {
-      "name": "2001 Freke",
-      "slug": "2001-freke"
-    },
-    {
-      "name": "2000 Mjölner",
-      "slug": "2000-mjolner"
+      "name": "Ultima",
+      "slug": "ultima"
     }
   ]
 }

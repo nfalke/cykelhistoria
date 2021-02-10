@@ -1,0 +1,10 @@
+{
+  "brand": "Crescent",
+  "type": "Sport",
+  "models": [
+    {
+      "name": "Abisko",
+      "slug": "abisko"
+    }
+  ]
+}

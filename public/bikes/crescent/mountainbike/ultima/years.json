@@ -1,0 +1,16 @@
+{
+  "brand": "Crescent",
+  "type": "Mountainbike",
+  "model": "2044 Ultima",
+  "years": [
+    {
+      "name": "1998"
+    },
+    {
+      "name": "1997"
+    },
+    {
+      "name": "1996"
+    }
+  ]
+}

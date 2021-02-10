@@ -1,0 +1,16 @@
+{
+  "brand": "Crescent",
+  "type": "Mountainbike",
+  "model": "Oden",
+  "years": [
+    {
+      "name": "1998"
+    },
+    {
+      "name": "1997"
+    },
+    {
+      "name": "1996"
+    }
+  ]
+}

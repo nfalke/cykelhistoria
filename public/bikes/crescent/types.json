@@ -6,16 +6,16 @@
       "slug": "mountainbike"
     },
     {
-      "name": "Sport/Racer",
-      "slug": "sport-racer"
+      "name": "Racer",
+      "slug": "racer"
     },
     {
-      "name": "Trekking dam",
-      "slug": "trekking-dam"
+      "name": "Sport",
+      "slug": "sport"
     },
     {
-      "name": "Trekking herr",
-      "slug": "trekking-herr"
+      "name": "Trekking",
+      "slug": "trekking"
     }
   ]
 }

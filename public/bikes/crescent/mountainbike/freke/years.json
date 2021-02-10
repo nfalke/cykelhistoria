@@ -1,0 +1,13 @@
+{
+  "brand": "Crescent",
+  "type": "Mountainbike",
+  "model": "Freke",
+  "years": [
+    {
+      "name": "1997"
+    },
+    {
+      "name": "1996"
+    }
+  ]
+}

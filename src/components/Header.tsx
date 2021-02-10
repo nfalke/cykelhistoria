@@ -161,7 +161,7 @@ const Header = (props: HeaderPropsInterface) => {
           window.document.title = title;
 
           if (window.location.pathname !== path) {
-            window.history.replaceState({}, title, path);
+            window.history.pushState({}, title, path);
           }
 
           // Add virtual pageview to analytics
