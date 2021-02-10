@@ -160,11 +160,9 @@ const Header = (props: HeaderPropsInterface) => {
           const metaDescription = data.description
             .substring(0, 160)
             .replace(/\S+[\W]*$/, "…");
-          console.log(
-            window.location.protocol + window.location.hostname + path
-          );
+
           window.document.title = title;
-          document
+          document.head
             .querySelector("link[rel='canonical']")
             .setAttribute(
               "href",
@@ -175,7 +173,7 @@ const Header = (props: HeaderPropsInterface) => {
             window.history.pushState({}, title, path);
           }
 
-          document
+          document.head
             .querySelector("meta[name='description']")
             .setAttribute("content", metaDescription);
 
