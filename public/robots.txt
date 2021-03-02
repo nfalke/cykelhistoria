@@ -1,6 +1,6 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Sitemap: /sitemap.xml
+Sitemap: https://www.cykelhistoria.se/sitemap.xml
 
 Disallow: /framcyklar.htm
 Disallow: /hermes.html
