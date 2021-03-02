@@ -12,10 +12,17 @@ const Main = (props: MainPropsInterface) => {
       <StyledContent>
         {!props.bikeData && <Heading>Välj cykel här ovanför &#10548;</Heading>}
         {props.bikeData && (
-          <>
-            <Heading>{`${props.bikeData?.brand} ${props.bikeData?.model}, ${props.bikeData?.year}`}</Heading>
+          <div itemScope itemType="http://schema.org/ProductModel">
+            <Heading itemProp="name">
+              <span itemProp="manufacturer">{props.bikeData?.brand}</span>
+              &nbsp;
+              <span itemProp="model">{props.bikeData?.model}</span>,&nbsp;
+              <span itemProp="productionDate">{props.bikeData?.year}</span>
+            </Heading>
             {props.bikeData?.description ? (
-              <Preamble>{props.bikeData?.description}</Preamble>
+              <Preamble itemProp="description">
+                {props.bikeData?.description}
+              </Preamble>
             ) : (
               ""
             )}
@@ -28,6 +35,7 @@ const Main = (props: MainPropsInterface) => {
               <Figure key={image.filename}>
                 <Image
                   src={"/bikes" + window.location.pathname + image.filename}
+                  itemProp="image"
                 />
                 {image.description ? (
                   <Figcaption>{image.description}</Figcaption>
@@ -36,7 +44,7 @@ const Main = (props: MainPropsInterface) => {
                 )}
               </Figure>
             ))}
-          </>
+          </div>
         )}
       </StyledContent>
     </StyledMain>
