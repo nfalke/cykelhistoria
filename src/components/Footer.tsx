@@ -22,7 +22,7 @@ function Footer(props: FooterPropsInterface) {
 const StyledFooter = styled.footer`
   padding: 1rem;
   font-size: 0.875rem;
-  color: #999;
+  color: #666;
 `;
 
 const FooterContent = styled.p`
@@ -31,10 +31,10 @@ const FooterContent = styled.p`
 `;
 
 const Link = styled.a`
-  color: #999;
+  color: #666;
   transition: color 0.3s;
   &:hover {
-    color: #666;
+    color: #000;
   }
 `;
 

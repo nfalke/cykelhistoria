@@ -36,6 +36,7 @@ const Main = (props: MainPropsInterface) => {
                 <Image
                   src={"/bikes" + window.location.pathname + image.filename}
                   itemProp="image"
+                  alt={`${props.bikeData?.brand} ${props.bikeData?.model}, ${props.bikeData?.year}`}
                 />
                 {image.description ? (
                   <Figcaption>{image.description}</Figcaption>
@@ -121,7 +122,7 @@ const Figcaption = styled.figcaption`
   font-style: italic;
   margin-top: 0.5rem;
   line-height: 1.6;
-  color: #999;
+  color: #666;
 `;
 
 export { Main };
